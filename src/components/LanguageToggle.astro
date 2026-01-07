@@ -1,0 +1,48 @@
+---
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  currentLang: Lang;
+}
+
+const { currentLang } = Astro.props;
+const enPath = '/';
+const arPath = '/ar/';
+const isEn = currentLang === 'en';
+---
+
+<div
+  dir="ltr"
+  class="language-toggle relative inline-flex items-center bg-secondary/80 backdrop-blur-sm rounded-full p-1 border border-border"
+>
+  <!-- Sliding indicator -->
+  <div
+    class:list={[
+      "lang-indicator absolute top-1 bottom-1 rounded-full bg-foreground transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]",
+      isEn ? "left-1" : "left-[calc(50%)]"
+    ]}
+    style="width: calc(50% - 4px);"
+  />
+  <a
+    href={enPath}
+    class:list={[
+      "relative z-10 px-4 py-1.5 text-[13px] font-medium transition-colors duration-200 ease-in-out rounded-full",
+      isEn ? "text-background" : "text-muted-foreground hover:text-foreground"
+    ]}
+    aria-label="Switch to English"
+    aria-current={isEn ? "page" : undefined}
+  >
+    EN
+  </a>
+  <a
+    href={arPath}
+    class:list={[
+      "relative z-10 px-4 py-1.5 text-[13px] font-medium transition-colors duration-200 ease-in-out rounded-full",
+      !isEn ? "text-background" : "text-muted-foreground hover:text-foreground"
+    ]}
+    aria-label="Switch to Arabic"
+    aria-current={!isEn ? "page" : undefined}
+  >
+    AR
+  </a>
+</div>

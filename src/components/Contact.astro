@@ -1,0 +1,66 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+// Actual contact values
+const email = 'hello@thabetamer.com';
+const phone = '+972 569 170 790';
+const linkedinUrl = 'https://linkedin.com/in/thabetamer';
+const githubUrl = 'https://github.com/thabetamer';
+const whatsappNumber = '972569170790';
+
+const links = [
+  {
+    icon: 'mail' as const,
+    label: email,
+    href: `mailto:${email}`,
+    ariaLabel: 'Send email'
+  },
+  {
+    icon: 'phone' as const,
+    label: phone,
+    href: `https://wa.me/${whatsappNumber}`,
+    ariaLabel: 'WhatsApp'
+  },
+  {
+    icon: 'linkedin' as const,
+    label: t(lang, 'contact.linkedin'),
+    href: linkedinUrl,
+    ariaLabel: 'LinkedIn profile'
+  },
+  {
+    icon: 'github' as const,
+    label: t(lang, 'contact.github'),
+    href: githubUrl,
+    ariaLabel: 'GitHub profile'
+  }
+];
+---
+
+<footer id="contact" class="pb-32 pt-16 border-t border-border">
+  <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase mb-8">
+    {t(lang, 'contact.title')}
+  </h2>
+
+  <div class="flex flex-wrap gap-x-10 gap-y-5 justify-between">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-200"
+        aria-label={link.ariaLabel}
+      >
+        <Icon name={link.icon} class="w-5 h-5 text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-200" />
+        <span class="text-sm">{link.label}</span>
+      </a>
+    ))}
+  </div>
+</footer>

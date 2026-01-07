@@ -1,0 +1,53 @@
+---
+interface Props {
+  value: string;
+  label: string;
+}
+
+const { value, label } = Astro.props;
+const numericValue = parseInt(value);
+const hasPlusSign = value.endsWith('+');
+const counterId = `counter-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class="counter-item text-center md:text-left">
+  <div class="counter-value text-3xl md:text-4xl font-bold text-foreground mb-2">
+    <span class="counter-number" id={counterId} data-target={numericValue}>0</span>{hasPlusSign ? '+' : ''}
+  </div>
+  <p class="text-sm md:text-base text-muted-foreground">
+    {label}
+  </p>
+</div>
+
+<script define:vars={{counterId, numericValue}}>
+  function animateCounter(element, target) {
+    let current = 0;
+    const duration = 2000; // 2 seconds
+    const startTime = Date.now();
+
+    function update() {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Easing function for smooth animation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      current = Math.floor(target * easeOut);
+
+      element.textContent = current.toString();
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        element.textContent = target.toString();
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // Animate counter when this element is loaded
+  const counterElement = document.getElementById(counterId);
+  if (counterElement) {
+    animateCounter(counterElement, numericValue);
+  }
+</script>

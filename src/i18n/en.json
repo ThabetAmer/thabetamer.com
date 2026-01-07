@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "title": "Thabet Amer - Technical Leader",
+    "description": "Senior technical leader with 15+ years in product management, cloud architecture, and DevOps across international development, startups, and enterprise environments."
+  },
+  "nav": {
+    "whatIDo": "What I Do",
+    "portfolio": "Selected Work",
+    "credentials": "Credentials",
+    "writing": "Writing",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Thabet Amer",
+    "tagline": "Technical Leader | Product & Cloud Architecture",
+    "bio": "Building scalable systems and leading product teams across 15+ countries. I bridge the gap between technical excellence and business outcomes, specializing in cloud-native solutions and AI-driven platforms.",
+    "counters": {
+      "experience": {
+        "value": "15+",
+        "label": "Years Driving Innovation"
+      },
+      "countries": {
+        "value": "20+",
+        "label": "Global Markets Served"
+      },
+      "projects": {
+        "value": "30+",
+        "label": "Products Launched to Success"
+      }
+    }
+  },
+  "whatIDo": {
+    "title": "What I Do",
+    "items": [
+      {
+        "title": "Product Leadership",
+        "description": "Driving product strategy from discovery to delivery, aligning cross-functional teams around user outcomes and business value."
+      },
+      {
+        "title": "Cloud & DevOps",
+        "description": "Architecting resilient cloud infrastructure and implementing CI/CD pipelines that enable teams to ship with confidence."
+      },
+      {
+        "title": "AI-Driven Systems",
+        "description": "Designing intelligent systems that leverage machine learning to automate workflows and surface actionable insights."
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Selected Work",
+    "viewDetails": "View details",
+    "filters": {
+      "all": "All",
+      "product": "Product Management",
+      "architecture": "Solution Architecture",
+      "cloud": "Cloud & DevOps",
+      "ai": "AI & Automation",
+      "gov": "Gov/NGO",
+      "startups": "Startups"
+    }
+  },
+  "experience": {
+    "title": "Career Journey"
+  },
+  "credentials": {
+    "title": "Credentials",
+    "certifications": "Certifications",
+    "education": "Education"
+  },
+  "writing": {
+    "title": "Writing",
+    "seeAll": "See all"
+  },
+  "brands": {
+    "title": "Clients & Partners"
+  },
+  "globalReach": {
+    "title": "Global Reach",
+    "legend": "Client & Project Locations"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "whatsapp": "WhatsApp (Business)"
+  }
+}

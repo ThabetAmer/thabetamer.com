@@ -1,0 +1,51 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import { articles } from '../data/writing';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="writing" class="mb-20 animate-on-scroll">
+  <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase mb-6">
+    {t(lang, 'writing.title')}
+  </h2>
+
+  <ul class="space-y-12">
+    {articles.slice(0, 4).map((article, index) => (
+      <li class="animate-on-scroll" style={`animation-delay: ${index * 75}ms`}>
+        <a
+          href={article.url || '#'}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center justify-between gap-4"
+        >
+          <span class="text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-200">
+            {article.title[lang]}
+          </span>
+          <div class="flex items-center gap-2 text-muted-foreground/60 shrink-0">
+            <span class="text-sm hidden sm:inline">
+              {article.source?.[lang] || (lang === 'ar' ? 'مقال' : 'Article')}
+            </span>
+            <Icon name="arrow-up-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  {articles.length > 4 && (
+    <a
+      href="#"
+      class="inline-flex items-center gap-1 mt-6 text-sm text-muted-foreground hover:text-foreground transition-colors"
+    >
+      {t(lang, 'writing.seeAll')}
+      <Icon name="arrow-right" class="w-4 h-4" />
+    </a>
+  )}
+</section>

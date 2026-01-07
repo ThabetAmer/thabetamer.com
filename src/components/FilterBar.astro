@@ -1,0 +1,102 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import { getAllPortfolioTags, type ProjectTag } from '../data/work';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tags = getAllPortfolioTags();
+
+const tagLabels: Record<ProjectTag, string> = {
+  product: t(lang, 'portfolio.filters.product'),
+  architecture: t(lang, 'portfolio.filters.architecture'),
+  cloud: t(lang, 'portfolio.filters.cloud'),
+  ai: t(lang, 'portfolio.filters.ai'),
+  gov: t(lang, 'portfolio.filters.gov'),
+  startups: t(lang, 'portfolio.filters.startups'),
+  saas: 'SaaS',
+  edtech: 'EdTech',
+  blockchain: 'Blockchain'
+};
+---
+
+<div class="flex flex-wrap gap-3" role="tablist" aria-label="Filter projects">
+  {tags.map((tag, index) => (
+    <button
+      type="button"
+      role="tab"
+      aria-selected={index === 0 ? 'true' : 'false'}
+      data-filter={tag}
+      class:list={[
+        'filter-pill px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ease-out',
+        'border',
+        index === 0
+          ? 'bg-foreground text-background border-foreground'
+          : 'bg-transparent text-muted-foreground border-border hover:border-muted-foreground hover:text-foreground'
+      ]}
+    >
+      {tagLabels[tag]}
+    </button>
+  ))}
+</div>
+
+<script>
+  function initFilters() {
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.project-card');
+
+    // Apply initial filter (first tag - startups)
+    const firstPill = pills[0];
+    if (firstPill) {
+      const initialTag = firstPill.getAttribute('data-filter');
+      filterCards(initialTag, cards);
+    }
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const tag = pill.getAttribute('data-filter');
+
+        // Update active pill styling
+        pills.forEach(p => {
+          p.classList.remove('bg-foreground', 'text-background', 'border-foreground');
+          p.classList.add('bg-transparent', 'text-muted-foreground', 'border-border');
+          p.setAttribute('aria-selected', 'false');
+        });
+        pill.classList.remove('bg-transparent', 'text-muted-foreground', 'border-border');
+        pill.classList.add('bg-foreground', 'text-background', 'border-foreground');
+        pill.setAttribute('aria-selected', 'true');
+
+        filterCards(tag, cards);
+      });
+    });
+  }
+
+  function filterCards(tag: string | null, cards: NodeListOf<Element>) {
+    let visibleIndex = 0;
+    cards.forEach((card) => {
+      const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+      const shouldShow = cardTags.includes(tag || '');
+
+      if (shouldShow) {
+        setTimeout(() => {
+          (card as HTMLElement).style.opacity = '1';
+          (card as HTMLElement).style.transform = 'translateY(0)';
+          (card as HTMLElement).style.display = 'block';
+        }, visibleIndex * 75);
+        visibleIndex++;
+      } else {
+        (card as HTMLElement).style.opacity = '0';
+        (card as HTMLElement).style.transform = 'translateY(8px)';
+        setTimeout(() => {
+          (card as HTMLElement).style.display = 'none';
+        }, 150);
+      }
+    });
+  }
+
+  initFilters();
+  document.addEventListener('astro:after-swap', initFilters);
+</script>

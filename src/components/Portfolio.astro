@@ -1,0 +1,155 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import { getPortfolioProjects } from '../data/work';
+import FilterBar from './FilterBar.astro';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const projects = getPortfolioProjects();
+---
+
+<section id="portfolio" class="mb-20 animate-on-scroll">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
+    <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase">
+      {t(lang, 'portfolio.title')}
+    </h2>
+    <FilterBar lang={lang} />
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {projects.map((project, index) => (
+      <ProjectCard project={project} lang={lang} index={index} />
+    ))}
+  </div>
+</section>
+
+<!-- Project Lightbox Modal -->
+<div
+  id="project-lightbox"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-6 bg-background/80 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="project-lightbox-title"
+>
+  <div class="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto bg-card rounded-xl shadow-2xl border border-border">
+    <!-- Close button -->
+    <button
+      type="button"
+      id="project-lightbox-close"
+      class="absolute top-4 end-4 z-10 p-2 rounded-lg bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
+      aria-label="Close preview"
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Image -->
+    <div class="aspect-video bg-muted">
+      <img
+        id="project-lightbox-image"
+        src=""
+        alt=""
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Content -->
+    <div class="p-6">
+      <h3 id="project-lightbox-title" class="text-2xl font-semibold text-foreground mb-2"></h3>
+
+      <p id="project-lightbox-meta" class="text-sm text-muted-foreground mb-4"></p>
+
+      <span id="project-lightbox-role" class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-muted text-muted-foreground mb-4"></span>
+
+      <p id="project-lightbox-description" class="text-base text-muted-foreground leading-relaxed mb-4"></p>
+
+      <div id="project-lightbox-details" class="text-base text-muted-foreground leading-relaxed mb-4 pt-4 border-t border-border hidden"></div>
+
+      <p id="project-lightbox-tags" class="text-sm text-muted-foreground/70"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initProjectLightbox() {
+    const lightbox = document.getElementById('project-lightbox');
+    const lightboxImage = document.getElementById('project-lightbox-image') as HTMLImageElement;
+    const lightboxTitle = document.getElementById('project-lightbox-title');
+    const lightboxMeta = document.getElementById('project-lightbox-meta');
+    const lightboxRole = document.getElementById('project-lightbox-role');
+    const lightboxDescription = document.getElementById('project-lightbox-description');
+    const lightboxDetails = document.getElementById('project-lightbox-details');
+    const lightboxTags = document.getElementById('project-lightbox-tags');
+    const closeBtn = document.getElementById('project-lightbox-close');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (!lightbox || !lightboxImage || !lightboxTitle || !closeBtn) return;
+
+    // Open lightbox on project card click
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.getAttribute('data-title') || '';
+        const client = card.getAttribute('data-client') || '';
+        const year = card.getAttribute('data-year') || '';
+        const role = card.getAttribute('data-role') || '';
+        const description = card.getAttribute('data-description') || '';
+        const details = card.getAttribute('data-details') || '';
+        const image = card.getAttribute('data-image') || '';
+        const tagsDisplay = card.getAttribute('data-tags-display') || '';
+
+        lightboxImage.src = image;
+        lightboxImage.alt = title;
+        if (lightboxTitle) lightboxTitle.textContent = title;
+        if (lightboxMeta) lightboxMeta.textContent = `${client} · ${year}`;
+        if (lightboxRole) lightboxRole.textContent = role;
+        if (lightboxDescription) lightboxDescription.textContent = description;
+        if (lightboxDetails) {
+          if (details) {
+            lightboxDetails.textContent = details;
+            lightboxDetails.classList.remove('hidden');
+          } else {
+            lightboxDetails.classList.add('hidden');
+          }
+        }
+        if (lightboxTags) lightboxTags.textContent = tagsDisplay;
+
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close lightbox
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Close on backdrop click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+        closeLightbox();
+      }
+    });
+  }
+
+  initProjectLightbox();
+  document.addEventListener('astro:after-swap', initProjectLightbox);
+</script>

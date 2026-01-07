@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#1a1a2e"/>
+  <defs>
+    <linearGradient id="grad-ibtci" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.4"/>
+    </linearGradient>
+  </defs>
+  <!-- M&E Analytics Pattern -->
+  <g opacity="0.7">
+    <!-- Bar chart -->
+    <rect x="200" y="280" width="50" height="80" rx="4" fill="url(#grad-ibtci)"/>
+    <rect x="270" y="220" width="50" height="140" rx="4" fill="url(#grad-ibtci)"/>
+    <rect x="340" y="180" width="50" height="180" rx="4" fill="url(#grad-ibtci)"/>
+    <rect x="410" y="240" width="50" height="120" rx="4" fill="url(#grad-ibtci)"/>
+    <rect x="480" y="160" width="50" height="200" rx="4" fill="url(#grad-ibtci)"/>
+    <rect x="550" y="200" width="50" height="160" rx="4" fill="url(#grad-ibtci)"/>
+    <!-- Trend line -->
+    <path d="M225 270 L295 210 L365 170 L435 230 L505 150 L575 190" stroke="#60a5fa" stroke-width="3" fill="none"/>
+    <!-- Data points -->
+    <circle cx="225" cy="270" r="6" fill="#dbeafe"/>
+    <circle cx="295" cy="210" r="6" fill="#dbeafe"/>
+    <circle cx="365" cy="170" r="6" fill="#dbeafe"/>
+    <circle cx="435" cy="230" r="6" fill="#dbeafe"/>
+    <circle cx="505" cy="150" r="6" fill="#dbeafe"/>
+    <circle cx="575" cy="190" r="6" fill="#dbeafe"/>
+  </g>
+  <!-- Label -->
+  <text x="400" y="100" text-anchor="middle" fill="#60a5fa" font-family="Arial" font-size="28" font-weight="bold" opacity="0.8">M&E</text>
+</svg>

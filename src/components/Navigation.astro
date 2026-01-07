@@ -1,0 +1,30 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<nav class="py-6 animate-fade-in-up delay-400">
+  <div class="flex justify-between gap-4 text-sm">
+    <a href="#what-i-do" class="text-muted-foreground hover:text-foreground transition-colors duration-200">
+      {t(lang, 'nav.whatIDo')}
+    </a>
+    <a href="#portfolio" class="text-muted-foreground hover:text-foreground transition-colors duration-200">
+      {t(lang, 'nav.portfolio')}
+    </a>
+    <a href="#credentials" class="text-muted-foreground hover:text-foreground transition-colors duration-200">
+      {t(lang, 'nav.credentials')}
+    </a>
+    <a href="#writing" class="text-muted-foreground hover:text-foreground transition-colors duration-200">
+      {t(lang, 'nav.writing')}
+    </a>
+    <a href="#contact" class="text-muted-foreground hover:text-foreground transition-colors duration-200">
+      {t(lang, 'nav.contact')}
+    </a>
+  </div>
+</nav>

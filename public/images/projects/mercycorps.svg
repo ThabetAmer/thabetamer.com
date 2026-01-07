@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#1a1a2e"/>
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:0.4"/>
+    </linearGradient>
+  </defs>
+  <!-- Financial/mobile money pattern -->
+  <g opacity="0.7">
+    <!-- Phone outline -->
+    <rect x="340" y="100" width="120" height="250" rx="16" stroke="url(#grad4)" stroke-width="3" fill="none"/>
+    <rect x="360" y="130" width="80" height="140" rx="4" fill="url(#grad4)" opacity="0.3"/>
+    <!-- Transaction lines -->
+    <path d="M180 180 L320 200" stroke="#f59e0b" stroke-width="2" opacity="0.5" stroke-dasharray="8 4"/>
+    <path d="M180 270 L320 250" stroke="#f59e0b" stroke-width="2" opacity="0.5" stroke-dasharray="8 4"/>
+    <path d="M480 200 L620 180" stroke="#f59e0b" stroke-width="2" opacity="0.5" stroke-dasharray="8 4"/>
+    <path d="M480 250 L620 270" stroke="#f59e0b" stroke-width="2" opacity="0.5" stroke-dasharray="8 4"/>
+    <!-- Currency symbols -->
+    <circle cx="140" cy="180" r="25" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="140" cy="270" r="25" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="660" cy="180" r="25" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="660" cy="270" r="25" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+  <!-- Uptime indicator -->
+  <text x="380" y="380" fill="#f59e0b" font-family="system-ui" font-size="14" opacity="0.6">99.9%</text>
+</svg>

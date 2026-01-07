@@ -1,0 +1,73 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import { experiences } from '../data/experience';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const typeIcons = {
+  leadership: 'rocket',
+  technical: 'code',
+  hybrid: 'target',
+  founder: 'heartbeat'
+} as const;
+---
+
+<section id="experience" class="mb-20 animate-on-scroll">
+  <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase mb-8">
+    {t(lang, 'experience.title')}
+  </h2>
+
+  <div class="relative">
+    <!-- Timeline line -->
+    <div class="absolute start-[15px] top-2 bottom-2 w-px bg-border"></div>
+
+    <!-- Experience items -->
+    <div class="space-y-0">
+      {experiences.map((exp, index) => (
+        <div
+          class="relative flex gap-5 py-4 group animate-on-scroll"
+          style={`animation-delay: ${index * 75}ms`}
+        >
+          <!-- Timeline node -->
+          <div class="relative z-10 flex-shrink-0">
+            <div
+              class={`
+                w-8 h-8 rounded-full flex items-center justify-center transition-colors
+                ${exp.highlight
+                  ? 'bg-foreground text-background'
+                  : 'bg-secondary border border-border group-hover:border-muted-foreground'
+                }
+              `}
+            >
+              <Icon
+                name={typeIcons[exp.type]}
+                class="w-3.5 h-3.5"
+              />
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="flex-1 min-w-0 flex items-start justify-between gap-4">
+            <div>
+              <h3 class={`text-base font-medium ${exp.highlight ? 'text-foreground' : 'text-foreground/80'}`}>
+                {exp.title[lang]}
+              </h3>
+              <p class="text-sm text-muted-foreground mt-0.5">
+                {exp.company[lang]}
+              </p>
+            </div>
+            <span class="text-sm text-muted-foreground font-mono flex-shrink-0">
+              {exp.period}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

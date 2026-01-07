@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Navigation from '../../components/Navigation.astro';
+import WhatIDo from '../../components/WhatIDo.astro';
+import Experience from '../../components/Experience.astro';
+import GlobalMap from '../../components/GlobalMap.astro';
+import Portfolio from '../../components/Portfolio.astro';
+import Credentials from '../../components/Credentials.astro';
+import Brands from '../../components/Brands.astro';
+import Writing from '../../components/Writing.astro';
+import Contact from '../../components/Contact.astro';
+import { t, type Lang } from '../../i18n/ui';
+
+const lang: Lang = 'ar';
+---
+
+<BaseLayout
+  lang={lang}
+  title={t(lang, 'meta.title')}
+  description={t(lang, 'meta.description')}
+>
+  <main class="max-w-[720px] mx-auto px-6">
+    <Hero lang={lang} />
+    <Navigation lang={lang} />
+    <WhatIDo lang={lang} />
+    <Experience lang={lang} />
+    <GlobalMap lang={lang} />
+    <Portfolio lang={lang} />
+    <Credentials lang={lang} />
+    <Brands lang={lang} />
+    <Writing lang={lang} />
+  </main>
+  <div class="max-w-[720px] mx-auto px-6">
+    <Contact lang={lang} />
+  </div>
+</BaseLayout>

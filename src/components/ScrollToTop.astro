@@ -1,0 +1,104 @@
+---
+// ScrollToTop button component - appears when user scrolls down
+// Choose from these creative minimal arrow designs by changing the SVG content
+---
+
+<button
+  id="scroll-to-top"
+  class="fixed bottom-8 right-8 p-3 rounded-full bg-primary text-primary-foreground opacity-0 pointer-events-none transition-opacity duration-300 hover:scale-110 cursor-pointer z-40"
+  aria-label="Scroll to top"
+>
+  <svg
+    class="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <!-- Option 1: Stacked horizontal lines getting smaller (pyramid) -->
+    <line x1="6" y1="16" x2="18" y2="16" stroke-width="2" stroke-linecap="round" />
+    <line x1="8" y1="12" x2="16" y2="12" stroke-width="2" stroke-linecap="round" />
+    <line x1="10" y1="8" x2="14" y2="8" stroke-width="2" stroke-linecap="round" />
+  </svg>
+</button>
+
+<!-- Alternative designs you can swap in: -->
+
+<!-- Option 2: Double chevron/caret (^^) -->
+<!--
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 14l4-4 4 4" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 10l4-4 4 4" />
+  </svg>
+-->
+
+<!-- Option 3: Single minimal caret (^) -->
+<!--
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 13l5-5 5 5" />
+  </svg>
+-->
+
+<!-- Option 4: Vertical bar with arrow -->
+<!--
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <line x1="12" y1="18" x2="12" y2="6" stroke-width="2" stroke-linecap="round" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5 5 5" />
+  </svg>
+-->
+
+<!-- Option 5: Nested angles (<<<) -->
+<!--
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 14l-3-3-3 3" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 10l-5-5-5 5" />
+  </svg>
+-->
+
+<!-- Option 6: Dot with vertical line -->
+<!--
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+    <path stroke-linecap="round" stroke-width="2" d="M12 16V6" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10l4-4 4 4" />
+  </svg>
+-->
+
+<script>
+  const scrollToTopButton = document.getElementById('scroll-to-top');
+
+  if (scrollToTopButton) {
+    // Show/hide button based on scroll position
+    function handleScroll() {
+      if (window.scrollY > 300) {
+        scrollToTopButton.classList.add('opacity-100');
+        scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        scrollToTopButton.classList.remove('opacity-100');
+        scrollToTopButton.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    // Scroll to top smoothly
+    scrollToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+
+    // Listen for scroll events with debouncing
+    let scrollTimeout: NodeJS.Timeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScroll, 50);
+    });
+
+    // Initial check
+    handleScroll();
+
+    // Re-initialize on Astro page transitions
+    document.addEventListener('astro:after-swap', () => {
+      handleScroll();
+    });
+  }
+</script>
