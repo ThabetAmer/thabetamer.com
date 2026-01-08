@@ -16,16 +16,16 @@ const { lang } = Astro.props;
     {t(lang, 'writing.title')}
   </h2>
 
-  <ul class="space-y-12">
+  <ul class="space-y-8 md:space-y-12">
     {articles.slice(0, 4).map((article, index) => (
       <li class="animate-on-scroll" style={`animation-delay: ${index * 75}ms`}>
         <a
           href={article.url || '#'}
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex items-center justify-between gap-4"
+          class="group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4"
         >
-          <span class="text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-200">
+          <span class="text-base sm:text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-200">
             {article.title[lang]}
           </span>
           <div class="flex items-center gap-2 text-muted-foreground/60 shrink-0">

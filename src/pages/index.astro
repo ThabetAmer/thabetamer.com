@@ -4,8 +4,8 @@ import Hero from '../components/Hero.astro';
 import Navigation from '../components/Navigation.astro';
 import WhatIDo from '../components/WhatIDo.astro';
 import Experience from '../components/Experience.astro';
-import GlobalMap from '../components/GlobalMap.astro';
-import Portfolio from '../components/Portfolio.astro';
+import GlobalMap from '../components/GlobalMap.tsx';
+import Portfolio from '../components/Portfolio.tsx';
 import Credentials from '../components/Credentials.astro';
 import Brands from '../components/Brands.astro';
 import Writing from '../components/Writing.astro';
@@ -20,18 +20,18 @@ const lang: Lang = 'en';
   title={t(lang, 'meta.title')}
   description={t(lang, 'meta.description')}
 >
-  <main class="max-w-[720px] mx-auto px-6">
+  <main class="max-w-[720px] mx-auto px-4 sm:px-6">
     <Hero lang={lang} />
     <Navigation lang={lang} />
     <WhatIDo lang={lang} />
     <Experience lang={lang} />
-    <GlobalMap lang={lang} />
-    <Portfolio lang={lang} />
+    <GlobalMap lang={lang} client:load />
+    <Portfolio lang={lang} client:load />
     <Credentials lang={lang} />
     <Brands lang={lang} />
     <Writing lang={lang} />
   </main>
-  <div class="max-w-[720px] mx-auto px-6">
+  <div class="max-w-[720px] mx-auto px-4 sm:px-6">
     <Contact lang={lang} />
   </div>
 </BaseLayout>

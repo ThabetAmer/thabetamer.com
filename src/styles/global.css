@@ -101,9 +101,9 @@
 
   /* Spacing */
   --spacing-section: 64px;
-  --spacing-section-mobile: 40px;
-  --spacing-grid: 20px;
-  --spacing-card: 20px;
+  --spacing-section-mobile: 32px;
+  --spacing-grid: 16px;
+  --spacing-card: 16px;
 
   /* Max Width */
   --max-width-content: 720px;
