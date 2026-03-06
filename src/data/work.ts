@@ -372,7 +372,7 @@ export const work: WorkItem[] = [
     id: 'dai-women-empowerment',
     showInPortfolio: true,
     showOnMap: true,
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=450&fit=crop',
+    image: 'https://images.unsplash.com/photo-1643458180338-02c4fa4be53c?w=800&h=450&fit=crop',
     title: { en: 'Women Empowerment Platform', ar: 'منصة تمكين المرأة' },
     client: { en: 'DAI', ar: 'DAI' },
     role: { en: 'Technical Lead', ar: 'قائد تقني' },

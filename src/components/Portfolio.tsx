@@ -169,14 +169,17 @@ export default function Portfolio({ lang }: Props) {
       {/* Lightbox Modal */}
       {lightboxOpen && selectedProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 overflow-y-auto bg-background/80 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeLightbox();
           }}
         >
-          <div className="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto bg-card rounded-xl shadow-2xl border border-border">
+          <div className="flex min-h-full items-center justify-center p-6" onClick={(e) => {
+            if (e.target === e.currentTarget) closeLightbox();
+          }}>
+          <div className="relative max-w-2xl w-full bg-card rounded-xl shadow-2xl border border-border">
             {/* Close button */}
             <button
               type="button"
@@ -241,6 +244,7 @@ export default function Portfolio({ lang }: Props) {
                   .join(', ')}
               </p>
             </div>
+          </div>
           </div>
         </div>
       )}

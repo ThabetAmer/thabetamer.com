@@ -13,21 +13,21 @@ export const brands: Brand[] = [
     id: 'apricot',
     name: 'Apricot International',
     logo: 'https://logo.clearbit.com/apricot.com',
-    url: 'https://apricot.com',
+    url: 'https://apricotinternational.org',
     size: 'lg'
   },
   {
     id: 'unblocked',
     name: 'Unblocked Brands',
     logo: 'https://logo.clearbit.com/nft.co',
-    url: 'https://nft.co',
+    url: 'https://www.nftco.com',
     size: 'sm'
   },
   {
     id: 'obi',
     name: 'OBI Digital',
     logo: 'https://logo.clearbit.com/obidigital.com',
-    url: 'https://obidigital.com',
+    url: 'https://www.obidigital.org',
     size: 'md'
   },
   {
@@ -90,7 +90,7 @@ export const brands: Brand[] = [
     id: 'souktel',
     name: 'Souktel',
     logo: 'https://logo.clearbit.com/souktel.com',
-    url: 'https://www.souktel.com',
+    url: 'https://www.souktel.org',
     size: 'xxl'
   },
   {
