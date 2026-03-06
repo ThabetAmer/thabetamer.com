@@ -14,6 +14,7 @@ export default function Counter({ value, label }: Props) {
     const element = counterRef.current;
     if (!element) return;
 
+    let rafId: number;
     let current = 0;
     const duration = 2000; // 2 seconds
     const startTime = Date.now();
@@ -29,13 +30,14 @@ export default function Counter({ value, label }: Props) {
       element.textContent = current.toString();
 
       if (progress < 1) {
-        requestAnimationFrame(update);
+        rafId = requestAnimationFrame(update);
       } else {
         element.textContent = numericValue.toString();
       }
     }
 
-    requestAnimationFrame(update);
+    rafId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(rafId);
   }, [numericValue]);
 
   return (

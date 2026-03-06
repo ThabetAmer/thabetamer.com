@@ -42,7 +42,10 @@ const tagLabels: Record<string, Record<Lang, string>> = {
       src={project.image}
       alt={project.title[lang]}
       class="w-full h-full object-cover img-grayscale hover-scale"
+      width="640"
+      height="360"
       loading="lazy"
+      decoding="async"
     />
   </div>
 

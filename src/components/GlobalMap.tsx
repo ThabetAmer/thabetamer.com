@@ -29,14 +29,14 @@ export default function GlobalMap({ lang }: Props) {
     const markers = mapContainerRef.current?.querySelectorAll('.map-marker');
     if (!markers) return;
 
+    const cleanups: (() => void)[] = [];
+
     markers.forEach((marker) => {
       const handleMouseEnter = (e: Event) => {
         const target = e.currentTarget as SVGGElement;
         const country = target.dataset.country || '';
-        const clients = JSON.parse(target.dataset.clients || '[]') as Array<{
-          name: string;
-          project: string;
-        }>;
+        let clients: Array<{ name: string; project: string }> = [];
+        try { clients = JSON.parse(target.dataset.clients || '[]'); } catch { return; }
 
         const circle = target.querySelector('.marker-dot') as SVGCircleElement;
         if (!circle || !svgRef.current) return;
@@ -73,11 +73,15 @@ export default function GlobalMap({ lang }: Props) {
       marker.addEventListener('mouseenter', handleMouseEnter);
       marker.addEventListener('mouseleave', handleMouseLeave);
 
-      return () => {
+      cleanups.push(() => {
         marker.removeEventListener('mouseenter', handleMouseEnter);
         marker.removeEventListener('mouseleave', handleMouseLeave);
-      };
+      });
     });
+
+    return () => {
+      cleanups.forEach(fn => fn());
+    };
   }, []);
 
   return (
@@ -88,14 +92,15 @@ export default function GlobalMap({ lang }: Props) {
 
       <div className="relative w-full">
         <div className="map-container relative overflow-visible" ref={mapContainerRef}>
-          <object
-            data="/images/world-map.svg"
-            type="image/svg+xml"
+          <img
+            src="/images/world-map.svg"
+            alt="World Map"
             className="world-map-image w-full h-auto"
-            aria-label="World Map"
-          >
-            <img src="/images/world-map.svg" alt="World Map" />
-          </object>
+            width={896}
+            height={472}
+            loading="lazy"
+            decoding="async"
+          />
 
           <svg
             ref={svgRef}
@@ -177,17 +182,24 @@ export default function GlobalMap({ lang }: Props) {
 
         @keyframes pulse-ring {
           0% {
-            r: 4;
+            transform: scale(1);
             opacity: 1;
           }
           100% {
-            r: 14;
+            transform: scale(3.5);
             opacity: 0;
           }
         }
 
         .marker-pulse {
+          will-change: transform, opacity;
+          transform-origin: center;
+          transform-box: fill-box;
           animation: pulse-ring 2s ease-out infinite;
+        }
+
+        .map-paused .marker-pulse {
+          animation-play-state: paused;
         }
 
         .map-marker:hover .marker-dot {

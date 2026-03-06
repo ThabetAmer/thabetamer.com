@@ -91,7 +91,7 @@
     window.addEventListener('scroll', () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(handleScroll, 50);
-    });
+    }, { passive: true });
 
     // Initial check
     handleScroll();

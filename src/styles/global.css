@@ -1,6 +1,3 @@
-/* Google Fonts Import - must be first */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-
 @import "tailwindcss";
 
 /* Dark mode variant */
@@ -277,13 +274,9 @@ html.theme-transition *::after {
 }
 
 /* Stagger delay utilities */
-.delay-75 { animation-delay: 75ms; }
 .delay-100 { animation-delay: 100ms; }
-.delay-150 { animation-delay: 150ms; }
 .delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
 
 /* Image hover effects */
 .img-grayscale {

@@ -111,7 +111,10 @@ export default function Portfolio({ lang }: Props) {
                   src={project.image}
                   alt={project.title[lang]}
                   className="w-full h-full object-cover img-grayscale hover-scale"
+                  width={640}
+                  height={360}
                   loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-muted">

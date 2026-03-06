@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import { getMapMarkers } from '../data/work';
 import { t, type Lang } from '../i18n/ui';
 
@@ -20,14 +19,15 @@ const mapMarkers = getMapMarkers();
     <!-- Map Container -->
     <div class="map-container relative overflow-visible">
       <!-- World Map Image -->
-      <object
-        data="/images/world-map.svg"
-        type="image/svg+xml"
+      <img
+        src="/images/world-map.svg"
+        alt="World Map"
         class="world-map-image w-full h-auto"
-        aria-label="World Map"
-      >
-        <Image src="/images/world-map.svg" alt="World Map" width={896} height={472} />
-      </object>
+        width="896"
+        height="472"
+        loading="lazy"
+        decoding="async"
+      />
 
       <!-- SVG Overlay for markers -->
       <svg
@@ -98,17 +98,24 @@ const mapMarkers = getMapMarkers();
 
   @keyframes pulse-ring {
     0% {
-      r: 4;
+      transform: scale(1);
       opacity: 1;
     }
     100% {
-      r: 14;
+      transform: scale(3.5);
       opacity: 0;
     }
   }
 
   .marker-pulse {
+    will-change: transform, opacity;
+    transform-origin: center;
+    transform-box: fill-box;
     animation: pulse-ring 2s ease-out infinite;
+  }
+
+  .map-paused .marker-pulse {
+    animation-play-state: paused;
   }
 
   .map-marker:hover .marker-dot {
@@ -121,7 +128,35 @@ const mapMarkers = getMapMarkers();
 </style>
 
 <script>
+  let _visibilityObserver: IntersectionObserver | null = null;
+  let _markerCleanups: (() => void)[] = [];
+
+  function initMapVisibility() {
+    if (_visibilityObserver) _visibilityObserver.disconnect();
+
+    const mapContainer = document.querySelector('.map-container');
+    if (!mapContainer) return;
+
+    _visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            mapContainer.classList.remove('map-paused');
+          } else {
+            mapContainer.classList.add('map-paused');
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+    _visibilityObserver.observe(mapContainer);
+  }
+
   function initMapInteraction() {
+    // Clean up old listeners
+    _markerCleanups.forEach(fn => fn());
+    _markerCleanups = [];
+
     const markers = document.querySelectorAll('.map-marker');
     const tooltip = document.getElementById('map-tooltip');
     const tooltipCountry = document.getElementById('tooltip-country');
@@ -131,12 +166,12 @@ const mapMarkers = getMapMarkers();
     if (!tooltip || !tooltipCountry || !tooltipClients || !mapContainer) return;
 
     markers.forEach((marker) => {
-      marker.addEventListener('mouseenter', (e) => {
+      const handleEnter = (e: Event) => {
         const target = e.currentTarget as SVGGElement;
         const country = target.dataset.country || '';
-        const clients = JSON.parse(target.dataset.clients || '[]') as { name: string; project: string }[];
+        let clients: { name: string; project: string }[] = [];
+        try { clients = JSON.parse(target.dataset.clients || '[]'); } catch { return; }
 
-        // Get marker position
         const circle = target.querySelector('.marker-dot') as SVGCircleElement;
         if (!circle) return;
 
@@ -146,11 +181,9 @@ const mapMarkers = getMapMarkers();
         const svgRect = svg.getBoundingClientRect();
         const containerRect = mapContainer.getBoundingClientRect();
 
-        // Get the circle's position in SVG coordinates
         const cx = parseFloat(circle.getAttribute('cx') || '0');
         const cy = parseFloat(circle.getAttribute('cy') || '0');
 
-        // Convert SVG coordinates to screen coordinates
         const viewBox = svg.viewBox.baseVal;
         const scaleX = svgRect.width / viewBox.width;
         const scaleY = svgRect.height / viewBox.height;
@@ -158,32 +191,50 @@ const mapMarkers = getMapMarkers();
         const screenX = cx * scaleX + (svgRect.left - containerRect.left);
         const screenY = cy * scaleY + (svgRect.top - containerRect.top);
 
-        // Update tooltip content
         tooltipCountry.textContent = country;
-        tooltipClients.innerHTML = clients.map(client => `
-          <div class="text-xs">
-            <span class="text-muted-foreground">${client.name}</span>
-            <span class="block text-foreground/70">${client.project}</span>
-          </div>
-        `).join('');
+        tooltipClients.replaceChildren();
+        clients.forEach(client => {
+          const div = document.createElement('div');
+          div.className = 'text-xs';
+          const name = document.createElement('span');
+          name.className = 'text-muted-foreground';
+          name.textContent = client.name;
+          const project = document.createElement('span');
+          project.className = 'block text-foreground/70';
+          project.textContent = client.project;
+          div.append(name, project);
+          tooltipClients.appendChild(div);
+        });
 
-        // Position tooltip
         tooltip.style.left = `${screenX}px`;
         tooltip.style.top = `${screenY - 10}px`;
         tooltip.classList.remove('opacity-0');
         tooltip.classList.add('opacity-100');
-      });
+      };
 
-      marker.addEventListener('mouseleave', () => {
+      const handleLeave = () => {
         tooltip.classList.remove('opacity-100');
         tooltip.classList.add('opacity-0');
+      };
+
+      marker.addEventListener('mouseenter', handleEnter);
+      marker.addEventListener('mouseleave', handleLeave);
+      _markerCleanups.push(() => {
+        marker.removeEventListener('mouseenter', handleEnter);
+        marker.removeEventListener('mouseleave', handleLeave);
       });
     });
   }
 
   // Initialize on page load
-  document.addEventListener('DOMContentLoaded', initMapInteraction);
+  document.addEventListener('DOMContentLoaded', () => {
+    initMapInteraction();
+    initMapVisibility();
+  });
 
   // Re-initialize on Astro page transitions
-  document.addEventListener('astro:page-load', initMapInteraction);
+  document.addEventListener('astro:page-load', () => {
+    initMapInteraction();
+    initMapVisibility();
+  });
 </script>

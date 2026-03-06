@@ -2,9 +2,9 @@
 import type { Lang } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import { Image } from 'astro:assets';
-import ThemeToggle from './ThemeToggle.tsx';
+import ThemeToggle from './ThemeToggle.astro';
 import LanguageToggle from './LanguageToggle.astro';
-import Counter from './Counter.tsx';
+import Counter from './Counter.astro';
 
 interface Props {
   lang: Lang;
@@ -21,7 +21,7 @@ const { lang } = Astro.props;
     </div>
     <div class="flex items-center gap-2 flex-shrink-0">
       <LanguageToggle currentLang={lang} />
-      <ThemeToggle client:load />
+      <ThemeToggle />
     </div>
   </div>
 
@@ -55,17 +55,14 @@ const { lang } = Astro.props;
     <Counter
       value={t(lang, 'hero.counters.experience.value')}
       label={t(lang, 'hero.counters.experience.label')}
-      client:load
     />
     <Counter
       value={t(lang, 'hero.counters.countries.value')}
       label={t(lang, 'hero.counters.countries.label')}
-      client:load
     />
     <Counter
       value={t(lang, 'hero.counters.projects.value')}
       label={t(lang, 'hero.counters.projects.label')}
-      client:load
     />
   </div>
 

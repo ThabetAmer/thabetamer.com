@@ -77,22 +77,30 @@ const tagLabels: Record<ProjectTag, string> = {
   function filterCards(tag: string | null, cards: NodeListOf<Element>) {
     let visibleIndex = 0;
     cards.forEach((card) => {
-      const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+      const el = card as HTMLElement;
+      const cardTags = el.getAttribute('data-tags')?.split(',') || [];
       const shouldShow = cardTags.includes(tag || '');
 
       if (shouldShow) {
-        setTimeout(() => {
-          (card as HTMLElement).style.opacity = '1';
-          (card as HTMLElement).style.transform = 'translateY(0)';
-          (card as HTMLElement).style.display = 'block';
-        }, visibleIndex * 75);
+        const delay = visibleIndex * 75;
+        el.style.display = 'block';
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, delay);
+        });
         visibleIndex++;
       } else {
-        (card as HTMLElement).style.opacity = '0';
-        (card as HTMLElement).style.transform = 'translateY(8px)';
-        setTimeout(() => {
-          (card as HTMLElement).style.display = 'none';
-        }, 150);
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px)';
+        const onEnd = () => {
+          el.style.display = 'none';
+          el.removeEventListener('transitionend', onEnd);
+        };
+        el.addEventListener('transitionend', onEnd);
+        // Fallback in case transitionend doesn't fire
+        setTimeout(() => { el.style.display = 'none'; }, 200);
       }
     });
   }

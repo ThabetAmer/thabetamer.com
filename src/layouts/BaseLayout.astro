@@ -105,21 +105,17 @@ const jsonLd = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Preconnect to Google Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Preload fonts - Plus Jakarta Sans -->
     <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap"
-      as="style"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
     />
     {lang === 'ar' && (
       <link
-        rel="preload"
+        rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap"
-        as="style"
       />
     )}
 
@@ -143,12 +139,15 @@ const jsonLd = {
 
     <!-- Intersection Observer for scroll animations -->
     <script is:inline>
+      var _scrollObserver;
       function initScrollAnimations() {
-        const observer = new IntersectionObserver(
+        if (_scrollObserver) _scrollObserver.disconnect();
+        _scrollObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
+                _scrollObserver.unobserve(entry.target);
               }
             });
           },
@@ -156,7 +155,7 @@ const jsonLd = {
         );
 
         document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-          observer.observe(el);
+          _scrollObserver.observe(el);
         });
       }
 
