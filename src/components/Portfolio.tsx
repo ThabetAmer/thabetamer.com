@@ -106,12 +106,18 @@ export default function Portfolio({ lang }: Props) {
           >
             {/* Project Image */}
             <div className="aspect-video bg-background overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title[lang]}
-                className="w-full h-full object-cover img-grayscale hover-scale"
-                loading="lazy"
-              />
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={project.title[lang]}
+                  className="w-full h-full object-cover img-grayscale hover-scale"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-muted">
+                  <span className="text-muted-foreground text-sm">{project.title[lang]}</span>
+                </div>
+              )}
             </div>
 
             {/* Content */}
@@ -192,11 +198,17 @@ export default function Portfolio({ lang }: Props) {
 
             {/* Image */}
             <div className="aspect-video bg-muted">
-              <img
-                src={selectedProject.image}
-                alt={selectedProject.title[lang]}
-                className="w-full h-full object-cover"
-              />
+              {selectedProject.image ? (
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title[lang]}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-muted-foreground text-sm">{selectedProject.title[lang]}</span>
+                </div>
+              )}
             </div>
 
             {/* Content */}
