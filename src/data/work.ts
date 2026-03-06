@@ -5,7 +5,7 @@ export type BilingualText = {
 };
 
 // Project tags for filtering
-export type ProjectTag = 'product' | 'architecture' | 'cloud' | 'ai' | 'gov' | 'startups' | 'saas' | 'edtech' | 'blockchain';
+export type ProjectTag = 'product' | 'architecture' | 'cloud' | 'ai' | 'devops' | 'startups' | 'saas' | 'edtech' | 'agritech' | 'ict4d' | 'gov';
 
 // Location definition for map markers
 export interface WorkLocation {
@@ -168,8 +168,8 @@ export const work: WorkItem[] = [
       en: 'Optimized CI/CD workflows reducing build times from 55+ mins to 8 mins. Reduced infrastructure costs from $900+ to $70/month through optimization. Implemented IaC with Terraform and CDK-Java for AWS deployments.',
       ar: 'تحسين سير عمل CI/CD مما قلل أوقات البناء من 55+ دقيقة إلى 8 دقائق. خفض تكاليف البنية التحتية من 900+ دولار إلى 70 دولار/شهر.'
     },
-    tags: ['cloud', 'blockchain', 'startups'],
-    year: '2023',
+    tags: ['startups', 'devops'],
+    year: '2024',
     locationIds: ['usa-west']
   },
   {
@@ -177,14 +177,14 @@ export const work: WorkItem[] = [
     showInPortfolio: true,
     showOnMap: true,
     image: '/images/projects/startup.svg',
-    title: { en: 'Souktel Digital Platform', ar: 'منصة سوكتل الرقمية' },
-    client: { en: 'Souktel', ar: 'سوكتل' },
-    role: { en: 'Technical Lead', ar: 'قائد تقني' },
+    title: { en: 'Omnichannel/M&E Platforms', ar: 'منصات Omni/M&E' },
+    client: { en: 'Souktel', ar: 'سوقتل' },
+    role: { en: 'Deputy CTO', ar: 'قائد تقني' },
     description: {
       en: 'Digital platform development for Souktel, delivering innovative technology solutions for mobile and web applications.',
-      ar: 'تطوير منصة رقمية لسوكتل، تقديم حلول تقنية مبتكرة لتطبيقات الهاتف والويب.'
+      ar: 'تطوير منصات Omni/M&E لسوقتل، تقديم حلول تقنية مبتكرة لتطبيقات الهاتف والويب.'
     },
-    tags: ['startups', 'product'],
+    tags: ['startups', 'product', 'devops', 'ict4d', 'architecture'],
     year: '2022',
     locationIds: ['usa-east']
   },
@@ -204,7 +204,7 @@ export const work: WorkItem[] = [
       en: 'Managed JIRA-organized sprints, validated code reviews, and debugged critical issues. Automated release processes and led tech team through feature prioritization and requirement triaging.',
       ar: 'إدارة سباقات JIRA المنظمة، والتحقق من مراجعات الكود، وتصحيح المشكلات الحرجة. أتمتة عمليات الإصدار وقيادة الفريق التقني.'
     },
-    tags: ['saas', 'product', 'gov'],
+    tags: ['product'],
     year: '2023',
     locationIds: ['usa-east']
   },
@@ -224,7 +224,7 @@ export const work: WorkItem[] = [
       en: 'Led technical implementation of cloud-hosted platforms. Prioritized and resolved feature requests through cross-functional dev and QA teams. Managed client expectations and escalation processes.',
       ar: 'قيادة التنفيذ التقني للمنصات السحابية. تحديد أولويات وحل طلبات الميزات من خلال فرق التطوير وضمان الجودة.'
     },
-    tags: ['edtech', 'gov', 'product'],
+    tags: ['edtech', 'product', 'ict4d', 'architecture'],
     year: '2023',
     locationIds: ['malawi', 'uk']
   },
@@ -244,7 +244,7 @@ export const work: WorkItem[] = [
       en: 'Designed and built AWS and Pantheon-based infrastructure. Implemented CI/CD pipelines via CircleCI. Architected WebOps infrastructure for high availability and scalability.',
       ar: 'تصميم وبناء بنية تحتية قائمة على AWS وPantheon. تنفيذ خطوط CI/CD عبر CircleCI.'
     },
-    tags: ['edtech', 'cloud', 'gov'],
+    tags: ['edtech', 'cloud', 'ict4d', 'devops'],
     year: '2022',
     locationIds: ['jordan', 'syria', 'lebanon']
   },
@@ -255,7 +255,7 @@ export const work: WorkItem[] = [
     image: '/images/projects/iqvia.svg',
     title: { en: 'IQVIA DevSecOps Modernization', ar: 'تحديث IQVIA DevSecOps' },
     client: { en: 'IQVIA (Healthcare/Pharma)', ar: 'IQVIA (الرعاية الصحية/الأدوية)' },
-    role: { en: 'DevOps Engineer', ar: 'مهندس DevOps' },
+    role: { en: 'Senior DevOps Engineer', ar: 'مهندس DevOps' },
     description: {
       en: 'Enterprise-wide Docker image optimization and DevSecOps pipeline modernization for a global healthcare data company.',
       ar: 'تحسين صور Docker على مستوى المؤسسة وتحديث خطوط DevSecOps لشركة بيانات رعاية صحية عالمية.'
@@ -264,7 +264,7 @@ export const work: WorkItem[] = [
       en: 'Eliminated 80% of container image size and 90% of security vulnerabilities. Refactored CI pipeline into modular pipeline-as-code using Groovy, Maven, and Ant. Deployed Kubernetes clusters with Helm Charts.',
       ar: 'إزالة 80٪ من حجم صور الحاويات و90٪ من الثغرات الأمنية. إعادة هيكلة خط CI إلى كود معياري.'
     },
-    tags: ['cloud', 'architecture'],
+    tags: ['devops'],
     year: '2020',
     locationIds: ['uae']
   },
@@ -284,7 +284,7 @@ export const work: WorkItem[] = [
       en: 'Successfully delivered MVP with mobile app and multi-channel comms. Integrated Twilio and Meta WhatsApp APIs for multi-channel outreach. Managed AWS cloud infrastructure for scalable deployment.',
       ar: 'تسليم MVP بنجاح مع تطبيق جوال واتصالات متعددة القنوات. دمج واجهات Twilio وMeta WhatsApp.'
     },
-    tags: ['gov', 'cloud', 'product'],
+    tags: ['cloud', 'product', 'ict4d'],
     year: '2023',
     locationIds: ['bangladesh']
   },
@@ -304,7 +304,7 @@ export const work: WorkItem[] = [
       en: 'Deployed platform supporting early-grade reading assessment across Malawi. Integrated RapidPro for data collection and SPSS for analysis. Created public dashboard for accessible data visualization.',
       ar: 'نشر منصة تدعم تقييم القراءة في المراحل المبكرة عبر ملاوي. دمج RapidPro لجمع البيانات وSPSS للتحليل.'
     },
-    tags: ['edtech', 'gov', 'product'],
+    tags: ['edtech', 'ict4d', 'product'],
     year: '2022',
     locationIds: ['malawi']
   },
@@ -315,16 +315,16 @@ export const work: WorkItem[] = [
     image: '/images/projects/startup.svg',
     title: { en: 'Early-Stage Startup Systems', ar: 'أنظمة الشركات الناشئة' },
     client: { en: 'Multiple Startups', ar: 'شركات ناشئة متعددة' },
-    role: { en: 'Cloud Architect', ar: 'مهندس السحابة' },
+    role: { en: 'Cloud & DevOps Architect', ar: 'مهندس السحابة' },
     description: {
-      en: 'System architecture design and CI/CD automation for multiple early-stage platforms including Arab Millionaire, Secretsville, Wasselni, and YallaReyada.',
+      en: 'System architecture design and CI/CD automation for multiple early-stage platforms.',
       ar: 'تصميم هندسة الأنظمة وأتمتة CI/CD لمنصات ناشئة متعددة.'
     },
     details: {
       en: 'Designed and implemented scalable, secure cloud systems on AWS for 4+ startups. Architected automated development processes via CI/CD pipelines. Provided technical mentorship to startup engineering teams.',
       ar: 'تصميم وتنفيذ أنظمة سحابية قابلة للتوسع وآمنة على AWS لأكثر من 4 شركات ناشئة.'
     },
-    tags: ['startups', 'cloud', 'architecture'],
+    tags: ['startups', 'cloud', 'architecture', 'devops'],
     year: '2022',
     locationIds: ['palestine', 'lebanon']
   },
@@ -344,7 +344,7 @@ export const work: WorkItem[] = [
       en: 'Built data collection and analysis tools for program monitoring. Implemented dashboards for real-time reporting and impact assessment across multiple country operations.',
       ar: 'بناء أدوات جمع البيانات والتحليل لمتابعة البرامج. تنفيذ لوحات معلومات للتقارير الفورية وتقييم الأثر.'
     },
-    tags: ['gov', 'product'],
+    tags: ['ict4d', 'product'],
     year: '2023',
     locationIds: ['tunisia', 'libya']
   },
@@ -364,7 +364,7 @@ export const work: WorkItem[] = [
       en: 'Developed digital solutions for agricultural value chains. Implemented mobile-first tools for farmer engagement and market linkages.',
       ar: 'تطوير حلول رقمية لسلاسل القيمة الزراعية. تنفيذ أدوات محمولة لإشراك المزارعين والربط بالأسواق.'
     },
-    tags: ['gov', 'product'],
+    tags: ['agritech', 'ict4d', 'product'],
     year: '2023',
     locationIds: ['egypt']
   },
@@ -384,7 +384,7 @@ export const work: WorkItem[] = [
       en: 'Built tools for skills development, job matching, and entrepreneurship support. Implemented secure, accessible solutions for women beneficiaries.',
       ar: 'بناء أدوات لتنمية المهارات والتوظيف ودعم ريادة الأعمال. تنفيذ حلول آمنة وسهلة الوصول للمستفيدات.'
     },
-    tags: ['gov', 'product'],
+    tags: ['ict4d', 'product'],
     year: '2023',
     locationIds: ['afghanistan']
   },
@@ -404,7 +404,7 @@ export const work: WorkItem[] = [
       en: 'Developed matching algorithms and employer engagement tools. Built mobile-accessible platform for youth job seekers and training programs.',
       ar: 'تطوير خوارزميات المطابقة وأدوات إشراك أصحاب العمل. بناء منصة متاحة عبر الهاتف للشباب الباحثين عن عمل.'
     },
-    tags: ['gov', 'edtech', 'product'],
+    tags: ['edtech', 'product'],
     year: '2023',
     locationIds: ['rwanda']
   },
@@ -424,7 +424,7 @@ export const work: WorkItem[] = [
       en: 'Built digital tools for legal aid providers and beneficiaries. Implemented case management and legal resource platforms for multi-country operations.',
       ar: 'بناء أدوات رقمية لمقدمي المساعدة القانونية والمستفيدين. تنفيذ منصات إدارة القضايا والموارد القانونية.'
     },
-    tags: ['gov', 'product'],
+    tags: ['ict4d', 'product'],
     year: '2023',
     locationIds: ['turkey', 'lebanon', 'syria']
   },
@@ -444,19 +444,17 @@ export const work: WorkItem[] = [
     year: '2025',
     locationIds: ['usa-mid']
   },
-
-  // ===== MAP-ONLY ITEMS (showInPortfolio: false) =====
   {
     id: 'hunter-douglas',
-    showInPortfolio: false,
+    showInPortfolio: true,
     showOnMap: true,
     image: '',
     title: { en: 'Enterprise Solutions', ar: 'حلول مؤسسية' },
     client: { en: 'Hunter Douglas', ar: 'هنتر دوغلاس' },
-    role: { en: 'Consultant', ar: 'استشاري' },
+    role: { en: 'DevOps Consultant', ar: 'استشاري' },
     description: { en: 'Enterprise solutions and technology consulting.', ar: 'حلول مؤسسية واستشارات تقنية.' },
-    tags: [],
-    year: '',
+    tags: ['devops'],
+    year: '2025',
     locationIds: ['usa-east']
   },
   {
@@ -469,7 +467,7 @@ export const work: WorkItem[] = [
     role: { en: 'Technical Project & Product Manager', ar: 'مدير المشروع والمنتج التقني' },
     description: { en: 'Led product lifecycle for a suite of digital platforms serving international development programs.', ar: 'قيادة دورة حياة المنتج لمجموعة من المنصات الرقمية التي تخدم برامج التنمية الدولية.' },
     tags: ['gov', 'product'],
-    year: '2020',
+    year: '',
     locationIds: ['usa-east']
   },
   {
@@ -487,15 +485,15 @@ export const work: WorkItem[] = [
   },
   {
     id: 'mercy-corps-wit',
-    showInPortfolio: false,
+    showInPortfolio: true,
     showOnMap: true,
     image: '',
     title: { en: 'WIT - Water Irrigation Tech', ar: 'تقنية ري المياه' },
     client: { en: 'Mercy Corps', ar: 'ميرسي كوربس' },
     role: { en: 'Technical Consultant', ar: 'استشاري تقني' },
     description: { en: 'Water irrigation technology solutions.', ar: 'حلول تقنية ري المياه.' },
-    tags: ['gov'],
-    year: '',
+    tags: ['ict4d', 'product'],
+    year: '2022',
     locationIds: ['jordan']
   },
   {
@@ -507,7 +505,7 @@ export const work: WorkItem[] = [
     client: { en: 'Bisan Systems', ar: 'أنظمة بيسان' },
     role: { en: 'Technical Consultant', ar: 'استشاري تقني' },
     description: { en: 'Fintech platform development.', ar: 'تطوير منصة التكنولوجيا المالية.' },
-    tags: ['startups'],
+    tags: [],
     year: '',
     locationIds: ['palestine']
   },
@@ -520,22 +518,9 @@ export const work: WorkItem[] = [
     client: { en: 'Apricot International', ar: 'أبريكوت الدولية' },
     role: { en: 'Director of Engineering', ar: 'مدير الهندسة' },
     description: { en: 'Driving strategic business development and leading high-performing engineering teams to unlock the full potential of displaced MENA tech talent.', ar: 'قيادة تطوير الأعمال الاستراتيجية وقيادة فرق هندسية عالية الأداء لإطلاق الإمكانات الكاملة لمواهب التكنولوجيا من منطقة الشرق الأوسط وشمال أفريقيا.' },
-    tags: ['startups'],
-    year: '2024',
-    locationIds: ['usa-west']
-  },
-  {
-    id: 'arab-millionaire',
-    showInPortfolio: false,
-    showOnMap: true,
-    image: '',
-    title: { en: 'Startup Platform', ar: 'منصة الشركة الناشئة' },
-    client: { en: 'Arab Millionaire', ar: 'المليونير العربي' },
-    role: { en: 'Cloud Architect', ar: 'مهندس السحابة' },
-    description: { en: 'Startup platform development.', ar: 'تطوير منصة الشركة الناشئة.' },
-    tags: ['startups'],
+    tags: [],
     year: '',
-    locationIds: ['lebanon']
+    locationIds: ['usa-west']
   }
 ];
 
@@ -561,7 +546,7 @@ export function getPortfolioProjectsByTag(tag: ProjectTag | 'all'): WorkItem[] {
  * Get all unique tags from portfolio projects
  */
 export function getAllPortfolioTags(): ProjectTag[] {
-  return ['startups', 'product', 'architecture', 'cloud', 'saas', 'edtech', 'gov', 'blockchain'];
+  return ['startups', 'product', 'architecture', 'cloud', 'saas', 'edtech', 'ict4d', 'agritech'];
 }
 
 /**

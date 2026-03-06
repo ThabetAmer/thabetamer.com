@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://thabetamer.com/sitemap-index.xml

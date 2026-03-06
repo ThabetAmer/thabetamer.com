@@ -1,0 +1,3 @@
+Contact: mailto:hello@thabetamer.com
+Preferred-Languages: en, ar
+Canonical: https://thabetamer.com/.well-known/security.txt

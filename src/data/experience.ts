@@ -29,64 +29,37 @@ export const experiences: Experience[] = [
     highlight: true
   },
   {
-    id: 'director-of-engineering',
-    title: {
-      en: 'Director of Engineering',
-      ar: 'مدير الهندسة'
-    },
-    company: {
-      en: 'Apricot International',
-      ar: 'أبريكوت الدولية'
-    },
-    period: '2024 - Present',
-    type: 'leadership',
-    highlight: true
-  },
-  {
     id: 'cto',
     title: {
-      en: 'Deputy CTO',
-      ar: 'نائب الرئيس التنفيذي للتكنولوجيا'
+      en: 'CTO, Tech Manager, Tech Lead',
+      ar: 'رئيس التنفيذي للتكنولوجيا'
     },
     company: {
-      en: 'Souktel Inc.',
-      ar: 'سوكتل'
+      en: 'Startups & innovative Mid-size',
+      ar: 'الشركات الناشئة'
     },
-    period: '2013 - 2020',
+    period: '2018 - Present',
     type: 'leadership',
     highlight: true
   },
   {
-    id: 'tech-project-manager',
+    id: 'project-manager',
     title: {
-      en: 'Technical Project & Product Manager',
-      ar: 'مدير المشروع والمنتج التقني'
+      en: 'Project & Product Manager',
+      ar: 'مدير المشاريع والمنتجات'
     },
     company: {
-      en: 'OBI International',
-      ar: 'OBI الدولية'
+      en: 'Innovative Startups',
+      ar: 'الشركات الناشئة'
     },
     period: '2020 - Present',
-    type: 'hybrid'
-  },
-  {
-    id: 'tech-lead',
-    title: {
-      en: 'Technical Lead',
-      ar: 'قائد تقني'
-    },
-    company: {
-      en: 'Startups & Scaleups',
-      ar: 'الشركات الناشئة والكبرى'
-    },
-    period: '2015 - 2023',
-    type: 'hybrid'
+    type: 'leadership'
   },
   {
     id: 'devops-specialist',
     title: {
       en: 'DevOps Specialist',
-      ar: 'متخصص DevOps'
+      ar: 'متخصص عمليات DevOps'
     },
     company: {
       en: 'Startups & Scaleups',
@@ -105,7 +78,7 @@ export const experiences: Experience[] = [
       en: 'Enterprise & Gov',
       ar: 'المؤسسات والحكومة'
     },
-    period: '2012 - 2023',
+    period: '2012 - 2022',
     type: 'technical'
   },
   {
@@ -118,7 +91,7 @@ export const experiences: Experience[] = [
       en: 'Software Houses',
       ar: 'شركات البرمجيات'
     },
-    period: '2009 - 2015',
+    period: '2009 - 2014',
     type: 'technical'
   }
 ];

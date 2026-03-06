@@ -8,27 +8,29 @@ interface Props {
 }
 
 const tagLabels: Record<ProjectTag, string> = {
-  product: 'Product',
-  architecture: 'Architecture',
+  product: 'Product Development',
+  architecture: 'Software Architecture',
   cloud: 'Cloud',
   ai: 'AI',
   gov: 'Gov/NGO',
   startups: 'Startup',
   saas: 'SaaS',
   edtech: 'EdTech',
-  blockchain: 'Blockchain',
+  agritech: 'Agritech',
+  ict4d: 'ICT4D'
 };
 
 const cardTagLabels: Record<string, Record<Lang, string>> = {
-  product: { en: 'Product', ar: 'منتج' },
-  architecture: { en: 'Architecture', ar: 'هندسة' },
+  product: { en: 'Product Development', ar: 'تطوير المنتج' },
+  architecture: { en: 'Software Architecture', ar: 'هندسة البرمجيات' },
   cloud: { en: 'Cloud', ar: 'سحابة' },
   ai: { en: 'AI', ar: 'ذكاء اصطناعي' },
   gov: { en: 'Gov/NGO', ar: 'حكومي' },
   startups: { en: 'Startup', ar: 'ناشئة' },
   saas: { en: 'SaaS', ar: 'SaaS' },
   edtech: { en: 'EdTech', ar: 'EdTech' },
-  blockchain: { en: 'Blockchain', ar: 'Blockchain' },
+  agritech: { en: 'AgriTech', ar: 'AgriTech' },
+  ict4d: { en: 'ICT4D', ar: 'ICT4D' }
 };
 
 export default function Portfolio({ lang }: Props) {
@@ -77,15 +79,12 @@ export default function Portfolio({ lang }: Props) {
               role="tab"
               aria-selected={activeFilter === tag}
               onClick={() => setActiveFilter(tag)}
-              className={`filter-pill px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ease-out border ${
-                activeFilter === tag
-                  ? 'bg-foreground text-background border-foreground'
-                  : 'bg-transparent text-muted-foreground border-border hover:border-muted-foreground hover:text-foreground'
-              }`}
+              className={`filter-pill px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ease-out border ${activeFilter === tag
+                ? 'bg-foreground text-background border-foreground'
+                : 'bg-transparent text-muted-foreground border-border hover:border-muted-foreground hover:text-foreground'
+                }`}
             >
-              {tag === 'saas' || tag === 'edtech' || tag === 'blockchain'
-                ? tag.toUpperCase()
-                : tagLabels[tag]}
+              {tagLabels[tag]}
             </button>
           ))}
         </div>
@@ -97,11 +96,10 @@ export default function Portfolio({ lang }: Props) {
           <article
             key={project.id}
             onClick={() => handleProjectClick(project)}
-            className={`project-card group rounded-xl border border-border bg-secondary/50 overflow-hidden transition-all duration-300 ease-out hover:border-muted-foreground/50 cursor-pointer ${
-              visibleProjects.has(project.id)
-                ? 'opacity-100 transform-none'
-                : 'opacity-0 translate-y-2 hidden'
-            }`}
+            className={`project-card group rounded-xl border border-border bg-secondary/50 overflow-hidden transition-all duration-300 ease-out hover:border-muted-foreground/50 cursor-pointer ${visibleProjects.has(project.id)
+              ? 'opacity-100 transform-none'
+              : 'opacity-0 translate-y-2 hidden'
+              }`}
             style={{
               animationDelay: `${index * 75}ms`,
             }}

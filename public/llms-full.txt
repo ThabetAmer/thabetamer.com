@@ -1,0 +1,216 @@
+# Thabet Amer - Full Profile
+
+## Overview
+Thabet Amer is a technical leader, solutions architect, and co-founder with 15+ years of experience spanning software engineering, cloud infrastructure, DevOps, product management, and startup leadership. Based in the US, working globally across the Middle East, Africa, South Asia, and Europe.
+
+---
+
+## Experience Timeline
+
+### Co-founder - Stealth Medtech Startup (2025 - Present)
+Type: Founder
+
+### CTO, Tech Manager, Tech Lead - Startups & Innovative Mid-size (2018 - Present)
+Type: Leadership
+
+### Project & Product Manager - Innovative Startups (2020 - Present)
+Type: Leadership
+
+### DevOps Specialist - Startups & Scaleups (2018 - 2025)
+Type: Technical
+
+### Solutions Architect - Enterprise & Government (2012 - 2022)
+Type: Technical
+
+### Senior Systems Engineer - Software Houses (2009 - 2014)
+Type: Technical
+
+---
+
+## Projects Portfolio
+
+### Peanut Posse Platform (2025)
+- Client: Apricot International
+- Role: Tech Project Manager
+- Description: Led product management and delivery through vague requirements and complex stakeholder landscapes, ensuring on-time project completion and upgrading team velocity.
+- Tags: startups, product
+- Location: United States (Central)
+
+### Enterprise Solutions (2025)
+- Client: Hunter Douglas
+- Role: DevOps Consultant
+- Description: Enterprise solutions and technology consulting.
+- Tags: devops
+- Location: United States (East)
+
+### NFT.Co Platform (2024)
+- Client: Unblocked Brands
+- Role: Senior DevOps Consultant
+- Description: Blockchain-based platform for NFT management and transactions. Maintained scalable Kubernetes production loads while significantly reducing AWS costs.
+- Details: Optimized CI/CD workflows reducing build times from 55+ mins to 8 mins. Reduced infrastructure costs from $900+ to $70/month through optimization. Implemented IaC with Terraform and CDK-Java for AWS deployments.
+- Tags: startups, devops
+- Location: United States (West)
+
+### AidKonekt Platform (2023)
+- Client: Konektid International
+- Role: Tech Lead & Scrum Master
+- Description: SaaS platform for aid delivery and humanitarian coordination. Oversaw technical implementation of product roadmap and release schedules.
+- Details: Managed JIRA-organized sprints, validated code reviews, and debugged critical issues. Automated release processes and led tech team through feature prioritization and requirement triaging.
+- Tags: product
+- Location: United States (East)
+
+### Strengthening The Teaching of Primary Schools (2023)
+- Client: Cambridge Education
+- Role: Senior Product & Project Manager
+- Description: Web and mobile platform for teacher observation, analysis, and professional development supporting over 20,000 teachers across Malawi.
+- Details: Led technical implementation of cloud-hosted platforms. Prioritized and resolved feature requests through cross-functional dev and QA teams.
+- Tags: edtech, product, ict4d, architecture
+- Locations: Malawi, United Kingdom
+
+### CARE Mobile Messaging Platform - CaMM (2023)
+- Client: CARE International
+- Role: Senior Product & Project Manager
+- Description: MVP mobile messaging platform for COVID-19 health awareness and tracking with multi-channel communications capabilities in Bangladesh.
+- Details: Successfully delivered MVP with mobile app and multi-channel comms. Integrated Twilio and Meta WhatsApp APIs for multi-channel outreach.
+- Tags: cloud, product, ict4d
+- Location: Bangladesh
+
+### Monitoring & Evaluation Platform (2023)
+- Client: IBTCI
+- Role: Technical Lead
+- Description: Monitoring and Evaluation (M&E) platform supporting development programs across Tunisia and Libya.
+- Tags: ict4d, product
+- Locations: Tunisia, Libya
+
+### Agretech Platform (2023)
+- Client: CNFA
+- Role: Technical Lead
+- Description: Agricultural technology platform supporting farmers and agribusinesses in Egypt with digital tools and market access.
+- Tags: agritech, ict4d, product
+- Location: Egypt
+
+### Women Empowerment Platform (2023)
+- Client: DAI
+- Role: Technical Lead
+- Description: Digital platform supporting women empowerment initiatives and economic opportunities in Afghanistan.
+- Tags: ict4d, product
+- Location: Afghanistan
+
+### Job Matching Platform (2023)
+- Client: EDC
+- Role: Technical Lead
+- Description: Job matching and workforce development platform connecting youth with employment opportunities in Rwanda.
+- Tags: edtech, product
+- Location: Rwanda
+
+### Legaltech Platform (2023)
+- Client: American Bar Association
+- Role: Technical Lead
+- Description: Legal technology platform supporting access to justice initiatives across Turkey, Lebanon, and Syria.
+- Tags: ict4d, product
+- Locations: Turkey, Lebanon, Syria
+
+### Omnichannel/M&E Platforms (2022)
+- Client: Souktel
+- Role: Deputy CTO
+- Description: Digital platform development for Souktel, delivering innovative technology solutions for mobile and web applications.
+- Tags: startups, product, devops, ict4d, architecture
+- Location: United States (East)
+
+### Ahlan Simsim Platform (2022)
+- Client: IRC / Sesame Street
+- Role: DevOps Engineer
+- Description: Mobile and web platform for promoting learning among young children across the Middle East with rich educational content.
+- Details: Designed and built AWS and Pantheon-based infrastructure. Implemented CI/CD pipelines via CircleCI.
+- Tags: edtech, cloud, ict4d, devops
+- Locations: Jordan, Syria, Lebanon
+
+### Education Management Information System - EMIS (2022)
+- Client: Abt Associates
+- Role: Senior Product & Project Manager
+- Description: Web and mobile data collection and analysis platform supporting Malawi's National Reading Program.
+- Tags: edtech, ict4d, product
+- Location: Malawi
+
+### Early-Stage Startup Systems (2022)
+- Client: Multiple Startups
+- Role: Cloud & DevOps Architect
+- Description: System architecture design and CI/CD automation for multiple early-stage platforms.
+- Details: Designed and implemented scalable, secure cloud systems on AWS for 4+ startups.
+- Tags: startups, cloud, architecture, devops
+- Locations: Palestine, Lebanon
+
+### WIT - Water Irrigation Tech (2022)
+- Client: Mercy Corps
+- Role: Technical Consultant
+- Description: Water irrigation technology solutions.
+- Tags: ict4d, product
+- Location: Jordan
+
+### IQVIA DevSecOps Modernization (2020)
+- Client: IQVIA (Healthcare/Pharma)
+- Role: Senior DevOps Engineer
+- Description: Enterprise-wide Docker image optimization and DevSecOps pipeline modernization for a global healthcare data company.
+- Details: Eliminated 80% of container image size and 90% of security vulnerabilities. Refactored CI pipeline into modular pipeline-as-code using Groovy, Maven, and Ant. Deployed Kubernetes clusters with Helm Charts.
+- Tags: devops
+- Location: United Arab Emirates
+
+### Additional Projects (Map-only)
+- Digital Platforms for International Development - OBI International (United States East)
+- Policy Making Tech - UNODC (Austria)
+- Fintech Platform - Bisan Systems (Palestine)
+- Engineering Leadership - Apricot International (United States West)
+
+---
+
+## Certifications
+
+### AWS Certified AI Practitioner
+- Issuer: Amazon Web Services
+- Verification: https://www.credly.com/badges/verify
+
+### PMP - Project Management Professional
+- Issuer: Project Management Institute (PMI)
+
+### PSM I - Professional Scrum Master I
+- Issuer: Scrum.org
+
+---
+
+## Education
+
+### Indiana University of Pennsylvania (IUP)
+- Field: Computer Science / Information Technology
+
+### Birzeit University
+- Field: Computer Science / Information Technology
+
+---
+
+## Technical Skills
+Cloud & Infrastructure: AWS, Kubernetes, Docker, Terraform, Helm, CDK
+CI/CD: CircleCI, GitHub Actions, Jenkins, GitLab CI
+DevOps: Infrastructure as Code, Container Orchestration, DevSecOps
+Architecture: Microservices, Serverless, Event-Driven
+Project Management: Agile, Scrum, JIRA, Product Roadmapping
+Platforms: Pantheon, Cloudflare, Vercel
+Languages & Frameworks: Node.js, React, Python, TypeScript
+
+## Sectors
+ICT4D (Information and Communication Technologies for Development), EdTech, AgriTech, LegalTech, MedTech, FinTech, Blockchain/NFT, Humanitarian, Government, Enterprise
+
+## Geographic Reach
+United States, Palestine, Jordan, Lebanon, Syria, Egypt, UAE, Turkey, Tunisia, Libya, Afghanistan, Bangladesh, Malawi, Rwanda, United Kingdom, Austria
+
+---
+
+## Contact
+- Website: https://thabetamer.com
+- Website (Arabic): https://thabetamer.com/ar/
+- LinkedIn: https://linkedin.com/in/thabetamer
+- GitHub: https://github.com/thabetamer
+- Email: hello@thabetamer.com
+
+## Languages
+- English (Fluent)
+- Arabic (Native)

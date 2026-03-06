@@ -1,0 +1,12 @@
+/* TEAM */
+Name: Thabet Amer
+Role: Technical Leader & Solutions Architect
+Site: https://thabetamer.com
+Location: United States
+
+/* TECHNOLOGY */
+Framework: Astro
+Styling: Tailwind CSS
+UI Library: React
+Hosting: Cloudflare Pages
+Language: TypeScript

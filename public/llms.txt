@@ -1,0 +1,41 @@
+# Thabet Amer - Technical Leader & Solutions Architect
+
+## Overview
+Thabet Amer is a technical leader, solutions architect, and co-founder with 15+ years of experience in software engineering, cloud infrastructure, DevOps, and product management.
+
+## Current Roles
+- Co-founder, Stealth Medtech Startup (2025 - Present)
+- CTO / Tech Manager / Tech Lead at startups and mid-size companies (2018 - Present)
+- Project & Product Manager at innovative startups (2020 - Present)
+
+## Core Services
+- Technical leadership (CTO, Tech Lead, Director of Engineering)
+- Solutions architecture and cloud infrastructure (AWS, Kubernetes, Terraform)
+- DevOps and CI/CD pipeline design and optimization
+- Product and project management (Agile, Scrum)
+- System design for startups and enterprise
+
+## Notable Clients
+IQVIA, CARE International, IRC/Sesame Street, Cambridge Education, American Bar Association, DAI, EDC, CNFA, Abt Associates, IBTCI, Mercy Corps, UNODC, Hunter Douglas, Konektid International, Souktel, Unblocked Brands
+
+## Certifications
+- AWS Certified AI Practitioner
+- PMP (Project Management Professional)
+- PSM I (Professional Scrum Master)
+
+## Education
+- Indiana University of Pennsylvania (IUP)
+- Birzeit University
+
+## Languages
+- English (Fluent)
+- Arabic (Native)
+
+## Contact & Links
+- Website: https://thabetamer.com
+- Website (Arabic): https://thabetamer.com/ar/
+- LinkedIn: https://linkedin.com/in/thabetamer
+- GitHub: https://github.com/thabetamer
+
+## Specializations
+Cloud Architecture, DevOps, Kubernetes, Docker, AWS, Terraform, CI/CD, Agile/Scrum, Product Management, Technical Leadership, ICT4D, EdTech, AgriTech, SaaS, Blockchain/NFT

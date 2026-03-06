@@ -11,6 +11,58 @@ interface Props {
 
 const { lang, title, description } = Astro.props;
 const dir = getDir(lang);
+
+const siteURL = 'https://thabetamer.com';
+const canonicalURL = new URL(Astro.url.pathname, siteURL).href;
+const ogImage = `${siteURL}/og-image.png`;
+const altLang = lang === 'en' ? 'ar' : 'en';
+const altURL = lang === 'en' ? `${siteURL}/ar/` : `${siteURL}/`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteURL}/#website`,
+      url: siteURL,
+      name: 'Thabet Amer',
+      inLanguage: ['en', 'ar']
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteURL}/#person`,
+      name: 'Thabet Amer',
+      jobTitle: 'Technical Leader & Solutions Architect',
+      email: 'hello@thabetamer.com',
+      url: siteURL,
+      description: 'Technical leader with 15+ years of experience in software engineering, cloud infrastructure, DevOps, and product management.',
+      knowsAbout: ['Cloud Architecture', 'DevOps', 'Kubernetes', 'AWS', 'Terraform', 'CI/CD', 'Agile', 'Product Management', 'Technical Leadership', 'Solutions Architecture'],
+      sameAs: [
+        'https://linkedin.com/in/thabetamer',
+        'https://github.com/thabetamer'
+      ],
+      hasCredential: [
+        { '@type': 'EducationalOccupationalCredential', name: 'AWS Certified AI Practitioner', credentialCategory: 'certification' },
+        { '@type': 'EducationalOccupationalCredential', name: 'PMP - Project Management Professional', credentialCategory: 'certification' },
+        { '@type': 'EducationalOccupationalCredential', name: 'PSM I - Professional Scrum Master', credentialCategory: 'certification' }
+      ],
+      alumniOf: [
+        { '@type': 'EducationalOrganization', name: 'Indiana University of Pennsylvania' },
+        { '@type': 'EducationalOrganization', name: 'Birzeit University' }
+      ]
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalURL}#webpage`,
+      url: canonicalURL,
+      name: title,
+      description: description,
+      inLanguage: lang,
+      isPartOf: { '@id': `${siteURL}/#website` },
+      about: { '@id': `${siteURL}/#person` }
+    }
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -20,14 +72,38 @@ const dir = getDir(lang);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Thabet Amer" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Canonical & Hreflang -->
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={`${siteURL}/`} />
+    <link rel="alternate" hreflang="ar" href={`${siteURL}/ar/`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteURL}/`} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ar_AR'} />
+    <meta property="og:locale:alternate" content={lang === 'en' ? 'ar_AR' : 'en_US'} />
+    <meta property="og:site_name" content="Thabet Amer" />
 
-    <!-- Favicon -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon & Manifest -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
