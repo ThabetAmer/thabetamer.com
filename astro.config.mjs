@@ -29,9 +29,15 @@ export default defineConfig({
     })
   ],
 
+  image: {
+    domains: ['images.unsplash.com']
+  },
+
   vite: {
     plugins: [tailwindcss()]
   },
 
-  adapter: cloudflare()
+  adapter: cloudflare({
+    imageService: 'compile'
+  })
 });

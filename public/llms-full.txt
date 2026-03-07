@@ -82,7 +82,7 @@ Type: Technical
 - Tags: ict4d, product
 - Locations: Tunisia, Libya
 
-### Agretech Platform (2023)
+### Agritech Platform (2023)
 - Client: CNFA
 - Role: Technical Lead
 - Description: Agricultural technology platform supporting farmers and agribusinesses in Egypt with digital tools and market access.

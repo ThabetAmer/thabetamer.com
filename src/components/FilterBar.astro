@@ -37,7 +37,7 @@ const tagLabels: Record<ProjectTag, string> = {
         'border',
         index === 0
           ? 'bg-foreground text-background border-foreground'
-          : 'bg-transparent text-muted-foreground border-border hover:border-muted-foreground hover:text-foreground'
+          : 'bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground hover:bg-muted'
       ]}
     >
       {tagLabels[tag]}
@@ -46,19 +46,27 @@ const tagLabels: Record<ProjectTag, string> = {
 </div>
 
 <script>
+  let _filterCleanups: (() => void)[] = [];
+  const _hideTimeouts = new Map<string, number>();
+
   function initFilters() {
+    _filterCleanups.forEach(fn => fn());
+    _filterCleanups = [];
+    _hideTimeouts.forEach(id => clearTimeout(id));
+    _hideTimeouts.clear();
+
     const pills = document.querySelectorAll('.filter-pill');
     const cards = document.querySelectorAll('.project-card');
 
-    // Apply initial filter (first tag - startups)
+    // Apply initial filter (first tag)
     const firstPill = pills[0];
     if (firstPill) {
       const initialTag = firstPill.getAttribute('data-filter');
-      filterCards(initialTag, cards);
+      filterCards(initialTag, cards, true);
     }
 
     pills.forEach(pill => {
-      pill.addEventListener('click', () => {
+      const handleClick = () => {
         const tag = pill.getAttribute('data-filter');
 
         // Update active pill styling
@@ -71,38 +79,55 @@ const tagLabels: Record<ProjectTag, string> = {
         pill.classList.add('bg-foreground', 'text-background', 'border-foreground');
         pill.setAttribute('aria-selected', 'true');
 
-        filterCards(tag, cards);
-      });
+        filterCards(tag, cards, false);
+      };
+      pill.addEventListener('click', handleClick);
+      _filterCleanups.push(() => pill.removeEventListener('click', handleClick));
     });
   }
 
-  function filterCards(tag: string | null, cards: NodeListOf<Element>) {
+  function filterCards(tag: string | null, cards: NodeListOf<Element>, immediate: boolean) {
+    // Clear any pending hide timeouts to prevent race conditions
+    _hideTimeouts.forEach(id => clearTimeout(id));
+    _hideTimeouts.clear();
+
     let visibleIndex = 0;
     cards.forEach((card) => {
       const el = card as HTMLElement;
+      const cardId = el.getAttribute('data-project-id') || '';
       const cardTags = el.getAttribute('data-tags')?.split(',') || [];
       const shouldShow = cardTags.includes(tag || '');
 
       if (shouldShow) {
-        const delay = visibleIndex * 75;
-        el.style.display = 'block';
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          }, delay);
-        });
+        if (immediate) {
+          el.style.display = 'block';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        } else {
+          const delay = visibleIndex * 75;
+          el.style.display = 'block';
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, delay);
+          });
+        }
         visibleIndex++;
       } else {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(8px)';
-        const onEnd = () => {
+        if (immediate) {
           el.style.display = 'none';
-          el.removeEventListener('transitionend', onEnd);
-        };
-        el.addEventListener('transitionend', onEnd);
-        // Fallback in case transitionend doesn't fire
-        setTimeout(() => { el.style.display = 'none'; }, 200);
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(8px)';
+        } else {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(8px)';
+          const timeoutId = setTimeout(() => {
+            el.style.display = 'none';
+            _hideTimeouts.delete(cardId);
+          }, 300) as unknown as number;
+          _hideTimeouts.set(cardId, timeoutId);
+        }
       }
     });
   }

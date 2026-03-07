@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import { getMapMarkers } from '../data/work';
 import { t, type Lang } from '../i18n/ui';
+import worldMap from '../../public/images/world-map.svg';
 
 interface Props {
   lang: Lang;
@@ -19,12 +21,12 @@ const mapMarkers = getMapMarkers();
     <!-- Map Container -->
     <div class="map-container relative overflow-visible">
       <!-- World Map Image -->
-      <img
-        src="/images/world-map.svg"
+      <Image
+        src={worldMap}
         alt="World Map"
         class="world-map-image w-full h-auto"
-        width="896"
-        height="472"
+        width={896}
+        height={472}
         loading="lazy"
         decoding="async"
       />
@@ -73,7 +75,7 @@ const mapMarkers = getMapMarkers();
         style="transform: translate(-50%, -100%);"
       >
         <div class="bg-card border border-border rounded-lg shadow-lg p-3 min-w-[180px] max-w-[240px]">
-          <h4 id="tooltip-country" class="text-sm font-medium text-foreground mb-2"></h4>
+          <p id="tooltip-country" class="text-sm font-medium text-foreground mb-2"></p>
           <div id="tooltip-clients" class="space-y-1.5"></div>
         </div>
         <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-border mx-auto -mt-px"></div>
