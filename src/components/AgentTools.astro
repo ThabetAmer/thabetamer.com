@@ -1,0 +1,109 @@
+---
+import { getPortfolioProjects } from '../data/work.ts';
+import { experiences } from '../data/experience.ts';
+import { certifications, education } from '../data/credentials.ts';
+import { services } from '../data/services.ts';
+
+const projects = getPortfolioProjects().map(p => ({
+  id: p.id,
+  title: p.title.en,
+  client: p.client.en,
+  role: p.role.en,
+  description: p.description.en,
+  tags: p.tags,
+  year: p.year
+}));
+
+const experienceData = experiences.map(e => ({
+  title: e.title.en,
+  company: e.company.en,
+  period: e.period,
+  type: e.type
+}));
+
+const certificationData = certifications.map(c => ({
+  name: c.name.en,
+  issuer: c.issuer.en,
+  year: c.year,
+  url: c.url
+}));
+
+const educationData = education.map(e => ({
+  degree: e.degree.en,
+  institution: e.institution.en,
+  field: e.field?.en
+}));
+
+const serviceData = services.map(s => ({
+  title: s.title.en,
+  description: s.description.en
+}));
+
+const profile = {
+  name: 'Thabet Amer',
+  tagline: 'Technical Leader | Product & Cloud Architecture',
+  bio: 'Building scalable systems and leading product teams across 15+ countries. I bridge the gap between technical excellence and business outcomes, specializing in cloud-native solutions and AI-driven platforms.',
+  yearsOfExperience: '15+',
+  marketsServed: '20+',
+  services: serviceData
+};
+
+const contact = {
+  email: 'hello@thabetamer.com',
+  linkedin: 'https://linkedin.com/in/thabetamer',
+  github: 'https://github.com/thabetamer'
+};
+---
+
+<script define:vars={{ projects, experienceData, certificationData, educationData, profile, contact }}>
+  if ('modelContext' in navigator) {
+    navigator.modelContext.provideContext({
+      tools: [
+        {
+          name: 'get_profile',
+          description: "Returns Thabet Amer's professional profile: bio, tagline, years of experience, markets served, and services offered.",
+          inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+          execute: async () => profile
+        },
+        {
+          name: 'list_projects',
+          description: 'Returns all portfolio projects with title, client, role, description, tags, and year.',
+          inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+          execute: async () => projects
+        },
+        {
+          name: 'search_projects',
+          description: 'Filter portfolio projects by tag. Available tags: product, architecture, cloud, ai, devops, startups, saas, edtech, agritech, ict4d, gov.',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              tag: {
+                type: 'string',
+                enum: ['product', 'architecture', 'cloud', 'ai', 'devops', 'startups', 'saas', 'edtech', 'agritech', 'ict4d', 'gov']
+              }
+            },
+            required: ['tag'],
+            additionalProperties: false
+          },
+          execute: async ({ tag }) => projects.filter(p => p.tags.includes(tag))
+        },
+        {
+          name: 'get_resume',
+          description: "Returns Thabet's work experience history, certifications, and education.",
+          inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+          execute: async () => ({
+            experience: experienceData,
+            certifications: certificationData,
+            education: educationData
+          })
+        },
+        {
+          name: 'get_contact',
+          description: "Returns Thabet's contact information: email, LinkedIn, and GitHub.",
+          inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+          execute: async () => contact
+        }
+      ]
+    });
+  }
+</script>
