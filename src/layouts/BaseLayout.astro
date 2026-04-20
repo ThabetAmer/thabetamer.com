@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { getDir, type Lang } from '../i18n/ui';
 import ScrollToTop from '../components/ScrollToTop.astro';
+import AgentTools from '../components/AgentTools.astro';
 
 interface Props {
   lang: Lang;
@@ -149,6 +150,7 @@ const jsonLd = {
   <body class="bg-background text-foreground min-h-screen antialiased">
     <slot />
     <ScrollToTop />
+    <AgentTools />
 
     <!-- Intersection Observer for scroll animations -->
     <script is:inline>
