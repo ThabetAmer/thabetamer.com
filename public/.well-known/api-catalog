@@ -1,0 +1,16 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://thabetamer.com/",
+      "describedby": [
+        { "href": "https://thabetamer.com/llms.txt", "type": "text/plain" }
+      ],
+      "service-doc": [
+        { "href": "https://thabetamer.com/llms-full.txt", "type": "text/plain" }
+      ],
+      "sitemap": [
+        { "href": "https://thabetamer.com/sitemap-index.xml", "type": "application/xml" }
+      ]
+    }
+  ]
+}

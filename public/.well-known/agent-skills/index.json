@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "skills": [
+    {
+      "name": "portfolio-tools",
+      "type": "webmcp",
+      "description": "WebMCP tools for Thabet Amer's portfolio: get profile, list projects, search projects by tag, get resume, get contact info",
+      "url": "https://thabetamer.com/"
+    }
+  ]
+}
