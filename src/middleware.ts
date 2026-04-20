@@ -10,7 +10,7 @@ export const onRequest = defineMiddleware((context, next) => {
       'Content-Security-Policy',
       "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://images.unsplash.com data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
     );
-    response.headers.set(
+    response.headers.append(
       'Link',
       '</.well-known/agent-skills/index.json>; rel="agent-skills", </.well-known/api-catalog>; rel="api-catalog", </llms.txt>; rel="describedby", </sitemap-index.xml>; rel="sitemap"'
     );

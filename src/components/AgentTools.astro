@@ -4,6 +4,8 @@ import { experiences } from '../data/experience.ts';
 import { certifications, education } from '../data/credentials.ts';
 import { services } from '../data/services.ts';
 
+const projectTags = [...new Set(getPortfolioProjects().flatMap(p => p.tags))].sort();
+
 const projects = getPortfolioProjects().map(p => ({
   id: p.id,
   title: p.title.en,
@@ -55,7 +57,7 @@ const contact = {
 };
 ---
 
-<script define:vars={{ projects, experienceData, certificationData, educationData, profile, contact }}>
+<script define:vars={{ projects, experienceData, certificationData, educationData, profile, contact, projectTags }}>
   if ('modelContext' in navigator) {
     navigator.modelContext.provideContext({
       tools: [
@@ -79,7 +81,7 @@ const contact = {
             properties: {
               tag: {
                 type: 'string',
-                enum: ['product', 'architecture', 'cloud', 'ai', 'devops', 'startups', 'saas', 'edtech', 'agritech', 'ict4d', 'gov']
+                enum: projectTags
               }
             },
             required: ['tag'],
