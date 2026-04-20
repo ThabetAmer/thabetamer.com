@@ -14,7 +14,6 @@ export const articles: Article[] = [
       ar: 'توسيع فرق الهندسة في المنظمات الموزعة'
     },
     date: '2024-09',
-    url: '#'
   },
   {
     title: {
@@ -22,7 +21,6 @@ export const articles: Article[] = [
       ar: 'أهمية هندسة المنصات في التكنولوجيا الإنسانية'
     },
     date: '2024-06',
-    url: '#'
   },
   {
     title: {
@@ -30,7 +28,6 @@ export const articles: Article[] = [
       ar: 'من التطبيق المتجانس إلى الخدمات المصغرة: نهج عملي'
     },
     date: '2024-02',
-    url: '#'
   },
   {
     title: {
@@ -38,6 +35,5 @@ export const articles: Article[] = [
       ar: 'بناء تطبيقات تعمل بدون إنترنت للبيئات ضعيفة الاتصال'
     },
     date: '2023-11',
-    url: '#'
   }
 ];

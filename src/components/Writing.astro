@@ -19,22 +19,35 @@ const { lang } = Astro.props;
   <ul class="space-y-8 md:space-y-12">
     {articles.slice(0, 4).map((article, index) => (
       <li class="animate-on-scroll" style={`animation-delay: ${index * 75}ms`}>
-        <a
-          href={article.url || '#'}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4"
-        >
-          <span class="text-base sm:text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-200">
-            {article.title[lang]}
-          </span>
-          <div class="flex items-center gap-2 text-muted-foreground/60 shrink-0">
-            <span class="text-sm hidden sm:inline">
-              {article.source?.[lang] || (lang === 'ar' ? 'مقال' : 'Article')}
+        {article.url ? (
+          <a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4"
+          >
+            <span class="text-base sm:text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-200">
+              {article.title[lang]}
             </span>
-            <Icon name="arrow-up-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-          </div>
-        </a>
+            <div class="flex items-center gap-2 text-muted-foreground/60 shrink-0">
+              <span class="text-sm hidden sm:inline">
+                {article.source?.[lang] || (lang === 'ar' ? 'مقال' : 'Article')}
+              </span>
+              <Icon name="arrow-up-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+            </div>
+          </a>
+        ) : (
+          <span class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 cursor-default">
+            <span class="text-base sm:text-lg text-muted-foreground/60">
+              {article.title[lang]}
+            </span>
+            <div class="flex items-center gap-2 text-muted-foreground/40 shrink-0">
+              <span class="text-sm hidden sm:inline">
+                {article.source?.[lang] || (lang === 'ar' ? 'مقال' : 'Article')}
+              </span>
+            </div>
+          </span>
+        )}
       </li>
     ))}
   </ul>

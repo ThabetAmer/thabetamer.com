@@ -19,20 +19,28 @@ const { lang } = Astro.props;
   <ul class="space-y-5">
     {articles.slice(0, 4).map((article, index) => (
       <li class="animate-on-scroll" style={`animation-delay: ${index * 75}ms`}>
-        <a
-          href={article.url || '#'}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group flex items-start justify-between gap-3"
-        >
-          <span class="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-200 leading-snug">
-            {article.title[lang]}
+        {article.url ? (
+          <a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-start justify-between gap-3"
+          >
+            <span class="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-200 leading-snug">
+              {article.title[lang]}
+            </span>
+            <Icon
+              name="arrow-up-right"
+              class="w-4 h-4 flex-shrink-0 text-muted-foreground/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            />
+          </a>
+        ) : (
+          <span class="flex items-start gap-3 cursor-default">
+            <span class="text-sm text-muted-foreground/60 leading-snug">
+              {article.title[lang]}
+            </span>
           </span>
-          <Icon
-            name="arrow-up-right"
-            class="w-4 h-4 flex-shrink-0 text-muted-foreground/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          />
-        </a>
+        )}
       </li>
     ))}
   </ul>
