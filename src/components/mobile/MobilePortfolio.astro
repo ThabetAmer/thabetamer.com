@@ -62,6 +62,42 @@ const tagLabels: Record<ProjectTag, string> = {
   </div>
 </section>
 
+<!-- Mobile Project Lightbox -->
+<div
+  id="m-project-lightbox"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="m-project-lightbox-title"
+>
+  <div class="relative max-w-sm w-full max-h-[90vh] overflow-y-auto bg-card rounded-xl shadow-2xl border border-border">
+    <button
+      type="button"
+      id="m-project-lightbox-close"
+      class="absolute top-3 end-3 z-10 p-2 rounded-lg bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
+      aria-label="Close preview"
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="aspect-video bg-muted">
+      <img id="m-project-lightbox-image" src="" alt="" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="p-5">
+      <p id="m-project-lightbox-title" class="text-xl font-semibold text-foreground mb-2"></p>
+      <p id="m-project-lightbox-meta" class="text-sm text-muted-foreground mb-3"></p>
+      <span id="m-project-lightbox-role" class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-muted text-muted-foreground mb-3"></span>
+      <p id="m-project-lightbox-description" class="text-sm text-muted-foreground leading-relaxed mb-3"></p>
+      <div id="m-project-lightbox-details" class="text-sm text-muted-foreground leading-relaxed mb-3 pt-3 border-t border-border hidden"></div>
+      <p id="m-project-lightbox-tags" class="text-xs text-muted-foreground/70"></p>
+    </div>
+  </div>
+</div>
+
 <script>
   let _mobileFilterCleanups: (() => void)[] = [];
   const _mobileHideTimeouts = new Map<string, number>();
@@ -163,4 +199,70 @@ const tagLabels: Record<ProjectTag, string> = {
   // Use rAF to run after desktop FilterBar's synchronous init
   requestAnimationFrame(initMobileFilters);
   document.addEventListener('astro:after-swap', () => requestAnimationFrame(initMobileFilters));
+
+  // Mobile project lightbox
+  let _mProjectLightboxCleanups: (() => void)[] = [];
+
+  function initMobileProjectLightbox() {
+    _mProjectLightboxCleanups.forEach(fn => fn());
+    _mProjectLightboxCleanups = [];
+
+    const lightbox = document.getElementById('m-project-lightbox');
+    const image = document.getElementById('m-project-lightbox-image') as HTMLImageElement;
+    const title = document.getElementById('m-project-lightbox-title');
+    const meta = document.getElementById('m-project-lightbox-meta');
+    const role = document.getElementById('m-project-lightbox-role');
+    const description = document.getElementById('m-project-lightbox-description');
+    const details = document.getElementById('m-project-lightbox-details');
+    const tags = document.getElementById('m-project-lightbox-tags');
+    const closeBtn = document.getElementById('m-project-lightbox-close');
+    const section = document.getElementById('m-portfolio');
+
+    if (!lightbox || !image || !title || !closeBtn || !section) return;
+
+    function closeLightbox() {
+      lightbox!.classList.add('hidden');
+      lightbox!.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    const handleCardClick = (e: Event) => {
+      const card = (e.target as Element).closest('.project-card');
+      if (!card) return;
+      image.src = card.getAttribute('data-image') || '';
+      image.alt = card.getAttribute('data-title') || '';
+      if (title) title.textContent = card.getAttribute('data-title') || '';
+      if (meta) meta.textContent = `${card.getAttribute('data-client') || ''} · ${card.getAttribute('data-year') || ''}`;
+      if (role) role.textContent = card.getAttribute('data-role') || '';
+      if (description) description.textContent = card.getAttribute('data-description') || '';
+      const detailText = card.getAttribute('data-details') || '';
+      if (details) {
+        details.textContent = detailText;
+        details.classList.toggle('hidden', !detailText);
+      }
+      if (tags) tags.textContent = card.getAttribute('data-tags-display') || '';
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    };
+
+    section.addEventListener('click', handleCardClick);
+    _mProjectLightboxCleanups.push(() => section.removeEventListener('click', handleCardClick));
+
+    closeBtn.addEventListener('click', closeLightbox);
+    _mProjectLightboxCleanups.push(() => closeBtn.removeEventListener('click', closeLightbox));
+
+    const handleBackdrop = (e: Event) => { if (e.target === lightbox) closeLightbox(); };
+    lightbox.addEventListener('click', handleBackdrop);
+    _mProjectLightboxCleanups.push(() => lightbox.removeEventListener('click', handleBackdrop));
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) closeLightbox();
+    };
+    document.addEventListener('keydown', handleEscape);
+    _mProjectLightboxCleanups.push(() => document.removeEventListener('keydown', handleEscape));
+  }
+
+  initMobileProjectLightbox();
+  document.addEventListener('astro:after-swap', initMobileProjectLightbox);
 </script>
