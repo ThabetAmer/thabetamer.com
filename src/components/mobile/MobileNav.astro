@@ -1,0 +1,34 @@
+---
+import type { Lang } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const navItems = [
+  { label: t(lang, 'nav.portfolio'), href: '#m-portfolio' },
+  { label: t(lang, 'nav.whatIDo'), href: '#m-what-i-do' },
+  { label: t(lang, 'experience.title'), href: '#m-experience' },
+  { label: t(lang, 'nav.credentials'), href: '#m-credentials' },
+  { label: t(lang, 'nav.writing'), href: '#m-writing' },
+  { label: t(lang, 'nav.contact'), href: '#m-contact' },
+];
+---
+
+<nav class="-mx-4 px-4 mb-8" aria-label="Page sections">
+  <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class="flex-shrink-0 px-4 py-2 rounded-full border border-border text-xs font-medium
+               text-muted-foreground hover:text-foreground hover:border-foreground/50
+               hover:bg-secondary/30 transition-colors duration-200"
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</nav>

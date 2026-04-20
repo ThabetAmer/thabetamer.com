@@ -1,0 +1,30 @@
+---
+import type { Lang } from '../../i18n/ui';
+import MobileProfileCard from './MobileProfileCard.astro';
+import MobileQuickLinks from './MobileQuickLinks.astro';
+import MobileNav from './MobileNav.astro';
+import MobilePortfolio from './MobilePortfolio.astro';
+import MobileServices from './MobileServices.astro';
+import MobileExperience from './MobileExperience.astro';
+import MobileCredentials from './MobileCredentials.astro';
+import MobileWriting from './MobileWriting.astro';
+import Contact from '../Contact.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="max-w-[420px] mx-auto px-4 pb-20">
+  <MobileProfileCard lang={lang} />
+  <MobileQuickLinks lang={lang} />
+  <MobileNav lang={lang} />
+  <MobilePortfolio lang={lang} />
+  <MobileServices lang={lang} />
+  <MobileExperience lang={lang} />
+  <MobileCredentials lang={lang} />
+  <MobileWriting lang={lang} />
+  <Contact lang={lang} />
+</div>

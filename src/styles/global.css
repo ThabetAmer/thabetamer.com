@@ -299,6 +299,15 @@ html.theme-transition *::after {
   transform: scale(1.05);
 }
 
+/* Hide scrollbar while preserving scroll (used for horizontal pill rows on mobile) */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Profile image blend effect */
 .mask-blend {
   mask-image: linear-gradient(to bottom,

@@ -18,10 +18,9 @@ const isEn = currentLang === 'en';
   <!-- Sliding indicator -->
   <div
     class:list={[
-      "lang-indicator absolute top-1 bottom-1 rounded-full bg-foreground transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]",
+      "lang-indicator absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-foreground transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]",
       isEn ? "left-1" : "left-[calc(50%)]"
     ]}
-    style="width: calc(50% - 4px);"
   />
   <a
     href={enPath}

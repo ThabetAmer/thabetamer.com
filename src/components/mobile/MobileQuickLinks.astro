@@ -1,0 +1,79 @@
+---
+import type { Lang } from '../../i18n/ui';
+import Icon from '../Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const links = [
+  {
+    icon: 'mail' as const,
+    label: lang === 'ar' ? 'البريد' : 'Email',
+    href: 'mailto:hello@thabetamer.com',
+    external: false,
+  },
+  {
+    icon: 'linkedin' as const,
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/thabetamer',
+    external: true,
+  },
+  {
+    icon: 'github' as const,
+    label: 'GitHub',
+    href: 'https://github.com/thabetamer',
+    external: true,
+  },
+  {
+    icon: 'phone' as const,
+    label: 'WhatsApp',
+    href: 'https://wa.me/13024694950',
+    external: true,
+  },
+];
+---
+
+<div class="grid grid-cols-2 gap-3 mb-6 animate-on-scroll">
+  {links.map((link, index) => (
+    <a
+      href={link.href}
+      target={link.external ? '_blank' : undefined}
+      rel={link.external ? 'noopener noreferrer' : undefined}
+      class="flex items-center justify-center gap-3 p-4 rounded-xl border border-border
+             bg-secondary/30 hover:bg-secondary/60 active:bg-secondary/70
+             transition-colors duration-200"
+    >
+      <span
+        class="contact-icon-animated flex-shrink-0"
+        style={`animation-delay: ${index * -1}s`}
+      >
+        <Icon name={link.icon} class="w-6 h-6" />
+      </span>
+      <span class="text-sm font-medium text-foreground">{link.label}</span>
+    </a>
+  ))}
+</div>
+
+<style is:global>
+  @keyframes contact-icon-hue {
+    0%   { color: oklch(0.65 0.18 250); }   /* indigo-blue */
+    25%  { color: oklch(0.65 0.18 155); }   /* teal-green  */
+    50%  { color: oklch(0.65 0.18 50);  }   /* amber       */
+    75%  { color: oklch(0.65 0.18 310); }   /* violet      */
+    100% { color: oklch(0.65 0.18 250); }
+  }
+
+  .contact-icon-animated {
+    animation: contact-icon-hue 4s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-icon-animated {
+      animation: none;
+      color: var(--muted-foreground);
+    }
+  }
+</style>

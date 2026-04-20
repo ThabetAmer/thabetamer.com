@@ -10,6 +10,7 @@ import Credentials from '../components/Credentials.astro';
 import Brands from '../components/Brands.astro';
 import Writing from '../components/Writing.astro';
 import Contact from '../components/Contact.astro';
+import MobileLayout from '../components/mobile/MobileLayout.astro';
 import { t, type Lang } from '../i18n/ui';
 
 const lang: Lang = 'en';
@@ -20,18 +21,26 @@ const lang: Lang = 'en';
   title={t(lang, 'meta.title')}
   description={t(lang, 'meta.description')}
 >
-  <main class="max-w-[720px] mx-auto px-4 sm:px-6">
-    <Hero lang={lang} />
-    <Navigation lang={lang} />
-    <WhatIDo lang={lang} />
-    <Experience lang={lang} />
-    <GlobalMap lang={lang} />
-    <Portfolio lang={lang} />
-    <Credentials lang={lang} />
-    <Brands lang={lang} />
-    <Writing lang={lang} />
-  </main>
-  <div class="max-w-[720px] mx-auto px-4 sm:px-6">
-    <Contact lang={lang} />
+  <!-- Mobile: link-in-bio layout -->
+  <div class="block md:hidden">
+    <MobileLayout lang={lang} />
+  </div>
+
+  <!-- Desktop: original layout (unchanged) -->
+  <div class="hidden md:block">
+    <main class="max-w-[720px] mx-auto px-4 sm:px-6">
+      <Hero lang={lang} />
+      <Navigation lang={lang} />
+      <WhatIDo lang={lang} />
+      <Experience lang={lang} />
+      <GlobalMap lang={lang} />
+      <Portfolio lang={lang} />
+      <Credentials lang={lang} />
+      <Brands lang={lang} />
+      <Writing lang={lang} />
+    </main>
+    <div class="max-w-[720px] mx-auto px-4 sm:px-6">
+      <Contact lang={lang} />
+    </div>
   </div>
 </BaseLayout>

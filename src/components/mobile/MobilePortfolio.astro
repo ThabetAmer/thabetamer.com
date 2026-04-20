@@ -1,0 +1,166 @@
+---
+import type { Lang } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+import { getPortfolioProjects, getAllPortfolioTags, type ProjectTag } from '../../data/work';
+import ProjectCard from '../ProjectCard.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const projects = getPortfolioProjects();
+const tags = getAllPortfolioTags();
+
+const tagLabels: Record<ProjectTag, string> = {
+  product: t(lang, 'portfolio.filters.product'),
+  architecture: t(lang, 'portfolio.filters.architecture'),
+  cloud: t(lang, 'portfolio.filters.cloud'),
+  ai: t(lang, 'portfolio.filters.ai'),
+  gov: t(lang, 'portfolio.filters.gov'),
+  startups: t(lang, 'portfolio.filters.startups'),
+  devops: 'DevOps',
+  saas: 'SaaS',
+  edtech: 'EdTech',
+  ict4d: 'ICT4D',
+  agritech: 'AgriTech',
+};
+---
+
+<section id="m-portfolio" class="mb-8">
+  <h2 class="text-xs font-medium tracking-widest text-section-heading uppercase mb-5">
+    {t(lang, 'portfolio.title')}
+  </h2>
+
+  <!-- Filter pills (horizontal scroll) -->
+  <div class="-mx-4 px-4 mb-5">
+    <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none" role="tablist" aria-label="Filter projects">
+      {tags.map((tag, index) => (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          data-filter={tag}
+          class:list={[
+            'mobile-filter-pill flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ease-out',
+            index === 0
+              ? 'bg-foreground text-background border-foreground'
+              : 'bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground hover:bg-muted',
+          ]}
+        >
+          {tagLabels[tag]}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Project cards -->
+  <div id="mobile-portfolio-section" class="grid grid-cols-1 gap-5">
+    {projects.map((project, index) => (
+      <ProjectCard project={project} lang={lang} index={index} />
+    ))}
+  </div>
+</section>
+
+<script>
+  let _mobileFilterCleanups: (() => void)[] = [];
+  const _mobileHideTimeouts = new Map<string, number>();
+
+  function initMobileFilters() {
+    _mobileFilterCleanups.forEach((fn) => fn());
+    _mobileFilterCleanups = [];
+    _mobileHideTimeouts.forEach((id) => clearTimeout(id));
+    _mobileHideTimeouts.clear();
+
+    const section = document.getElementById('mobile-portfolio-section');
+    if (!section) return;
+
+    const pills = document.querySelectorAll<HTMLElement>('.mobile-filter-pill');
+    const cards = section.querySelectorAll<HTMLElement>('.project-card');
+
+    // Reset all mobile cards (override any global filter state)
+    cards.forEach((card) => {
+      card.style.display = 'block';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+
+    // Apply initial filter from first pill
+    const firstPill = pills[0];
+    if (firstPill) {
+      const initialTag = firstPill.getAttribute('data-filter');
+      mobileFilterCards(initialTag, cards, true);
+    }
+
+    pills.forEach((pill) => {
+      const handleClick = () => {
+        const tag = pill.getAttribute('data-filter');
+
+        pills.forEach((p) => {
+          p.classList.remove('bg-foreground', 'text-background', 'border-foreground');
+          p.classList.add('bg-transparent', 'text-muted-foreground', 'border-border');
+          p.setAttribute('aria-selected', 'false');
+        });
+        pill.classList.remove('bg-transparent', 'text-muted-foreground', 'border-border');
+        pill.classList.add('bg-foreground', 'text-background', 'border-foreground');
+        pill.setAttribute('aria-selected', 'true');
+
+        mobileFilterCards(tag, cards, false);
+      };
+      pill.addEventListener('click', handleClick);
+      _mobileFilterCleanups.push(() => pill.removeEventListener('click', handleClick));
+    });
+  }
+
+  function mobileFilterCards(
+    tag: string | null,
+    cards: NodeListOf<HTMLElement>,
+    immediate: boolean,
+  ) {
+    _mobileHideTimeouts.forEach((id) => clearTimeout(id));
+    _mobileHideTimeouts.clear();
+
+    let visibleIndex = 0;
+    cards.forEach((card) => {
+      const cardId = card.getAttribute('data-project-id') || '';
+      const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+      const shouldShow = cardTags.includes(tag || '');
+
+      if (shouldShow) {
+        if (immediate) {
+          card.style.display = 'block';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        } else {
+          const delay = visibleIndex * 75;
+          card.style.display = 'block';
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, delay);
+          });
+        }
+        visibleIndex++;
+      } else {
+        if (immediate) {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(8px)';
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(8px)';
+          const timeoutId = setTimeout(() => {
+            card.style.display = 'none';
+            _mobileHideTimeouts.delete(cardId);
+          }, 300) as unknown as number;
+          _mobileHideTimeouts.set(cardId, timeoutId);
+        }
+      }
+    });
+  }
+
+  // Use rAF to run after desktop FilterBar's synchronous init
+  requestAnimationFrame(initMobileFilters);
+  document.addEventListener('astro:after-swap', () => requestAnimationFrame(initMobileFilters));
+</script>

@@ -1,0 +1,36 @@
+---
+import type { Lang } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+import { services } from '../../data/services';
+import Icon from '../Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="m-what-i-do" class="mb-8 animate-on-scroll">
+  <h2 class="text-xs font-medium tracking-widest text-section-heading uppercase mb-5">
+    {t(lang, 'whatIDo.title')}
+  </h2>
+
+  <div class="grid grid-cols-2 gap-3">
+    {services.map((service, index) => (
+      <div
+        class="p-4 rounded-xl border border-border bg-secondary/20
+               hover:bg-secondary/40 transition-colors duration-200 animate-on-scroll"
+        style={`animation-delay: ${index * 60}ms`}
+      >
+        <Icon name={service.icon as any} class="w-4 h-4 text-muted-foreground mb-2.5" />
+        <h3 class="text-sm font-medium text-foreground leading-snug mb-1.5">
+          {service.title[lang]}
+        </h3>
+        <p class="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+          {service.description[lang]}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
