@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "thabetamer-portfolio": {
+      "url": "https://thabetamer.com/api/mcp",
+      "description": "Portfolio MCP server for Thabet Amer — Technical Leader & Solutions Architect. Query projects, experience, certifications, and contact info.",
+      "transport": "streamable-http",
+      "protocolVersion": "2025-11-25"
+    }
+  }
+}

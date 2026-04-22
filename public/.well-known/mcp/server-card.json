@@ -1,0 +1,25 @@
+{
+  "name": "thabetamer-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio MCP server for Thabet Amer — Technical Leader & Solutions Architect with 15+ years building scalable systems across 20+ global markets.",
+  "url": "https://thabetamer.com/api/mcp",
+  "transport": "streamable-http",
+  "protocolVersion": "2025-11-25",
+  "authentication": { "required": false },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "tools": [
+    { "name": "get_profile",            "description": "Returns professional profile: bio, tagline, years of experience, markets served, and services." },
+    { "name": "list_projects",          "description": "Returns all portfolio projects with title, client, role, description, tags, and year." },
+    { "name": "search_projects_by_tag", "description": "Filter portfolio projects by tag: product, architecture, cloud, ai, devops, startups, saas, edtech, agritech, ict4d, gov." },
+    { "name": "get_project",            "description": "Returns a single portfolio project by id, including full details and image." },
+    { "name": "get_experience",         "description": "Returns career timeline: all roles with title, company, period, and type." },
+    { "name": "get_certifications",     "description": "Returns professional certifications and educational degrees with verification URLs." },
+    { "name": "get_contact",            "description": "Returns contact information: email, LinkedIn, and GitHub." }
+  ],
+  "contact": { "email": "hello@thabetamer.com" },
+  "homepage": "https://thabetamer.com"
+}
