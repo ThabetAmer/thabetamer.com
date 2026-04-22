@@ -35,7 +35,7 @@ const tagLabels: Record<string, Record<Lang, string>> = {
   data-details={project.details?.[lang] || ''}
   data-image={project.image}
   data-tags-display={project.tags.map(tag => tagLabels[tag]?.[lang] || tag).join(', ')}
-  style={`animation-delay: ${index * 75}ms`}
+  style={`--delay: ${index * 75}ms`}
 >
   <!-- Project Image with grayscale effect -->
   <div class="aspect-video bg-background overflow-hidden">

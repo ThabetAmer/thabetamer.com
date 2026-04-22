@@ -21,7 +21,7 @@ const { lang } = Astro.props;
       <div
         class="p-4 rounded-xl border border-border bg-secondary/20
                hover:bg-secondary/40 transition-colors duration-200 animate-on-scroll"
-        style={`animation-delay: ${index * 60}ms`}
+        style={`--delay: ${index * 60}ms`}
       >
         <Icon name={service.icon as any} class="w-4 h-4 text-muted-foreground mb-2.5" />
         <h3 class="text-sm font-medium text-foreground leading-snug mb-1.5">

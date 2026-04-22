@@ -48,7 +48,7 @@ const links = [
     >
       <span
         class="contact-icon-animated flex-shrink-0"
-        style={`animation-delay: ${index * -1}s`}
+        style={`--delay: ${index * -1}s`}
       >
         <Icon name={link.icon} class="w-6 h-6" />
       </span>
@@ -68,6 +68,7 @@ const links = [
 
   .contact-icon-animated {
     animation: contact-icon-hue 4s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
   }
 
   @media (prefers-reduced-motion: reduce) {

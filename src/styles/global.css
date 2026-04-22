@@ -267,6 +267,7 @@ html.theme-transition *::after {
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(10px);
+  animation-delay: var(--delay, 0ms);
 }
 
 .animate-on-scroll.is-visible {

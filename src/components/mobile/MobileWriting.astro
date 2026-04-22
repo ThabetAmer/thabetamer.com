@@ -18,7 +18,7 @@ const { lang } = Astro.props;
 
   <ul class="space-y-5">
     {articles.slice(0, 4).map((article, index) => (
-      <li class="animate-on-scroll" style={`animation-delay: ${index * 75}ms`}>
+      <li class="animate-on-scroll" style={`--delay: ${index * 75}ms`}>
         {article.url ? (
           <a
             href={article.url}
