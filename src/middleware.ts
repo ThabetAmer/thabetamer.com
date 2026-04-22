@@ -1,7 +1,21 @@
 import { defineMiddleware } from 'astro:middleware';
+import llmsContent from '../public/llms-full.txt?raw';
 
 export const onRequest = defineMiddleware((context, next) => {
+  const accept = context.request.headers.get('Accept') ?? '';
+  if (accept.includes('text/markdown')) {
+    return new Response(llmsContent, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/markdown; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600',
+        'Vary': 'Accept',
+      },
+    });
+  }
+
   return next().then((response) => {
+    response.headers.set('Vary', 'Accept');
     response.headers.set('X-Frame-Options', 'DENY');
     response.headers.set('X-Content-Type-Options', 'nosniff');
     response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
