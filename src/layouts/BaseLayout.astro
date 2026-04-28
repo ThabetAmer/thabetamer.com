@@ -27,16 +27,33 @@ const jsonLd = {
       '@id': `${siteURL}/#website`,
       url: siteURL,
       name: 'Thabet Amer',
-      inLanguage: ['en', 'ar']
+      alternateName: ['Thabet Amer Portfolio', 'thabetamer.com'],
+      inLanguage: ['en', 'ar'],
+      publisher: { '@id': `${siteURL}/#person` }
     },
     {
       '@type': 'Person',
       '@id': `${siteURL}/#person`,
       name: 'Thabet Amer',
+      alternateName: ['Thabet J. Amer', 'ثابت عامر'],
+      givenName: 'Thabet',
+      familyName: 'Amer',
       jobTitle: 'Technical Leader & Solutions Architect',
       url: siteURL,
+      mainEntityOfPage: { '@id': `${siteURL}/#profilepage` },
       description: 'Technical leader with 15+ years of experience in software engineering, cloud infrastructure, DevOps, and product management.',
       knowsAbout: ['Cloud Architecture', 'DevOps', 'Kubernetes', 'AWS', 'Terraform', 'CI/CD', 'Agile', 'Product Management', 'Technical Leadership', 'Solutions Architecture'],
+      knowsLanguage: [
+        { '@type': 'Language', name: 'English', alternateName: 'en' },
+        { '@type': 'Language', name: 'Arabic', alternateName: 'ar' }
+      ],
+      hasOccupation: {
+        '@type': 'Occupation',
+        name: 'Solutions Architect',
+        occupationLocation: { '@type': 'City', name: 'Ramallah' },
+        skills: 'Cloud architecture, DevOps, Kubernetes, AWS, Terraform, CI/CD, technical leadership'
+      },
+      nationality: { '@type': 'Country', name: 'Palestine' },
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Ramallah',
@@ -64,10 +81,22 @@ const jsonLd = {
       ],
       image: {
         '@type': 'ImageObject',
-        url: `${siteURL}/images/profile.png`,
-        width: 320,
-        height: 320
+        url: `${siteURL}/images/profile-1200.png`,
+        contentUrl: `${siteURL}/images/profile-1200.png`,
+        width: 1200,
+        height: 1200,
+        caption: 'Thabet Amer'
       }
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${siteURL}/#profilepage`,
+      url: siteURL,
+      dateCreated: '2024-01-01',
+      dateModified: new Date().toISOString().split('T')[0],
+      mainEntity: { '@id': `${siteURL}/#person` },
+      about: { '@id': `${siteURL}/#person` },
+      isPartOf: { '@id': `${siteURL}/#website` }
     },
     {
       '@type': 'WebPage',
@@ -107,7 +136,7 @@ const jsonLd = {
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
@@ -116,6 +145,9 @@ const jsonLd = {
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ar_AR'} />
     <meta property="og:locale:alternate" content={lang === 'en' ? 'ar_AR' : 'en_US'} />
     <meta property="og:site_name" content="Thabet Amer" />
+    <meta property="profile:first_name" content="Thabet" />
+    <meta property="profile:last_name" content="Amer" />
+    <meta property="profile:username" content="thabetamer" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
