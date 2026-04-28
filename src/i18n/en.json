@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Thabet Amer - Technical Product Leader | Cloud & Engineering",
-    "description": "Technical leader with 15+ years building scalable systems — cloud architecture, DevOps, and product management for global startups and enterprise clients."
+    "description": "Technical leader with 15+ years in cloud architecture, DevOps, and product management for startups and enterprises worldwide."
   },
   "nav": {
     "whatIDo": "What I Do",
@@ -83,6 +83,9 @@
     "email": "Email",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "whatsapp": "WhatsApp (Business)"
+    "whatsapp": "WhatsApp (Business)",
+    "qr": {
+      "label": "Scan to share this site"
+    }
   }
 }

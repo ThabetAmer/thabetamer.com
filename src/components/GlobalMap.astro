@@ -132,9 +132,11 @@ const mapMarkers = getMapMarkers();
 <script>
   let _visibilityObserver: IntersectionObserver | null = null;
   let _markerCleanups: (() => void)[] = [];
+  let _markerListenersInit = false;
 
   function initMapVisibility() {
     if (_visibilityObserver) _visibilityObserver.disconnect();
+    _markerListenersInit = false;
 
     const mapContainer = document.querySelector('.map-container');
     if (!mapContainer) return;
@@ -144,6 +146,10 @@ const mapMarkers = getMapMarkers();
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             mapContainer.classList.remove('map-paused');
+            if (!_markerListenersInit) {
+              initMapInteraction();
+              _markerListenersInit = true;
+            }
           } else {
             mapContainer.classList.add('map-paused');
           }
@@ -228,15 +234,8 @@ const mapMarkers = getMapMarkers();
     });
   }
 
-  // Initialize on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    initMapInteraction();
-    initMapVisibility();
-  });
-
-  // Re-initialize on Astro page transitions
+  // initMapVisibility lazily calls initMapInteraction when the map enters the viewport
   document.addEventListener('astro:page-load', () => {
-    initMapInteraction();
     initMapVisibility();
   });
 </script>

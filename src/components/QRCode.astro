@@ -1,0 +1,30 @@
+---
+import QRCodeLib from 'qrcode';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const url = lang === 'ar' ? 'https://thabetamer.com/ar/' : 'https://thabetamer.com/';
+
+const rawSvg = await QRCodeLib.toString(url, {
+  type: 'svg',
+  margin: 0,
+  errorCorrectionLevel: 'M',
+});
+
+// Inherit foreground color from parent so QR works in both light and dark mode.
+const svg = rawSvg
+  .replace(/#000000/gi, 'currentColor')
+  .replace(/#ffffff/gi, 'transparent')
+  .replace(/<svg /, '<svg aria-hidden="true" focusable="false" ');
+---
+
+<div class="md:hidden mt-10 flex flex-col items-center gap-4">
+  <div class="w-full max-w-[220px] aspect-square rounded-2xl border border-border bg-background p-4 text-foreground [&>svg]:w-full [&>svg]:h-full" set:html={svg} />
+  <p class="text-xs tracking-wide text-center text-muted-foreground">{t(lang, 'contact.qr.label')}</p>
+</div>

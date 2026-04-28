@@ -2,6 +2,7 @@
 import type { Lang } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import Icon from './Icon.astro';
+import QRCode from './QRCode.astro';
 
 interface Props {
   lang: Lang;
@@ -39,12 +40,12 @@ const links = [
 ];
 ---
 
-<footer id="contact" class="pb-32 pt-16 border-t border-border">
-  <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase mb-8">
+<footer id="contact" class="pb-20 md:pb-32 pt-12 md:pt-16 border-t border-border">
+  <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase mb-6 md:mb-8 text-center md:text-start">
     {t(lang, 'contact.title')}
   </h2>
 
-  <div class="flex flex-col sm:flex-row flex-wrap gap-x-6 md:gap-x-10 gap-y-4 md:gap-y-5">
+  <div class="flex flex-col sm:flex-row flex-wrap items-center sm:items-start gap-x-6 md:gap-x-10 gap-y-3 md:gap-y-5">
     <!-- Email link: obfuscated via JS to prevent scraping -->
     <a
       data-contact-email
@@ -66,10 +67,12 @@ const links = [
         aria-label={link.ariaLabel}
       >
         <Icon name={link.icon} class="w-5 h-5 text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-200 flex-shrink-0" />
-        <span class="text-xs sm:text-sm">{link.label}</span>
+        <span class="text-xs sm:text-sm" dir={link.icon === 'phone' ? 'ltr' : undefined}>{link.label}</span>
       </a>
     ))}
   </div>
+
+  <QRCode lang={lang} />
 </footer>
 
 <script>

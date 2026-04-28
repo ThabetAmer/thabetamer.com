@@ -94,13 +94,16 @@ const projects = getPortfolioProjects();
     const lightboxDetails = document.getElementById('project-lightbox-details');
     const lightboxTags = document.getElementById('project-lightbox-tags');
     const closeBtn = document.getElementById('project-lightbox-close');
-    const projectCards = document.querySelectorAll('#portfolio .project-card');
 
     if (!lightbox || !lightboxImage || !lightboxTitle || !closeBtn) return;
 
-    // Open lightbox on project card click
-    projectCards.forEach(card => {
-      const handleClick = () => {
+    // Open lightbox via event delegation on the portfolio grid
+    const portfolio = document.getElementById('portfolio');
+    if (portfolio) {
+      const handleCardClick = (e: Event) => {
+        const card = (e.target as Element).closest('.project-card');
+        if (!card) return;
+
         const title = card.getAttribute('data-title') || '';
         const client = card.getAttribute('data-client') || '';
         const year = card.getAttribute('data-year') || '';
@@ -130,9 +133,9 @@ const projects = getPortfolioProjects();
         lightbox.classList.add('flex');
         document.body.style.overflow = 'hidden';
       };
-      card.addEventListener('click', handleClick);
-      _projectLightboxCleanups.push(() => card.removeEventListener('click', handleClick));
-    });
+      portfolio.addEventListener('click', handleCardClick);
+      _projectLightboxCleanups.push(() => portfolio.removeEventListener('click', handleCardClick));
+    }
 
     // Close lightbox
     function closeLightbox() {

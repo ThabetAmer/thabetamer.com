@@ -74,15 +74,16 @@ const jsonLd = {
       '@id': `${canonicalURL}#webpage`,
       url: canonicalURL,
       name: title,
+      headline: title,
       description: description,
       inLanguage: lang,
       isPartOf: { '@id': `${siteURL}/#website` },
       about: { '@id': `${siteURL}/#person` },
       primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: ogImage
-      },
-      thumbnailUrl: ogImage
+        url: ogImage,
+        contentUrl: ogImage
+      }
     }
   ]
 };
