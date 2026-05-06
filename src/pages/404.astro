@@ -1,0 +1,37 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t, getDir, type Lang } from '../i18n/ui';
+
+const url = Astro.url.pathname;
+const lang: Lang = url.startsWith('/ar') ? 'ar' : 'en';
+
+Astro.response.status = 404;
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t(lang, 'notFound.code')} — ${t(lang, 'notFound.title')}`}
+  description={t(lang, 'notFound.description')}
+>
+  <div
+    dir={getDir(lang)}
+    class="min-h-screen flex flex-col items-center justify-center px-6 text-center"
+  >
+    <p class="text-8xl font-semibold text-foreground/10 tabular-nums leading-none mb-6 select-none">
+      {t(lang, 'notFound.code')}
+    </p>
+    <h1 class="text-xl font-medium text-foreground mb-3">
+      {t(lang, 'notFound.title')}
+    </h1>
+    <p class="text-sm text-muted-foreground mb-10 max-w-xs">
+      {t(lang, 'notFound.description')}
+    </p>
+    <a
+      href={lang === 'ar' ? '/ar/' : '/'}
+      class="inline-flex items-center gap-2 text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-secondary transition-colors duration-200"
+    >
+      {t(lang, 'notFound.home')}
+    </a>
+  </div>
+</BaseLayout>

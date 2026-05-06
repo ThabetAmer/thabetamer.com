@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { Lang } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import type { WorkItem } from '../data/work';
@@ -40,7 +39,7 @@ const tagLabels: Record<string, Record<Lang, string>> = {
   <!-- Project Image with grayscale effect -->
   <div class="aspect-video bg-background overflow-hidden">
 {project.image ? (
-      <Image
+      <img
         src={project.image}
         alt={project.title[lang]}
         class="w-full h-full object-cover img-grayscale hover-scale"

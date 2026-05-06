@@ -1,8 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { getMapMarkers } from '../data/work';
 import { t, type Lang } from '../i18n/ui';
-import worldMap from '../../public/images/world-map.svg';
 
 interface Props {
   lang: Lang;
@@ -21,8 +19,8 @@ const mapMarkers = getMapMarkers();
     <!-- Map Container -->
     <div class="map-container relative overflow-visible">
       <!-- World Map Image -->
-      <Image
-        src={worldMap}
+      <img
+        src="/images/world-map.svg"
         alt="World Map"
         class="world-map-image w-full h-auto"
         width={896}
