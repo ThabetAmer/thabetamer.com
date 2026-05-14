@@ -2,6 +2,16 @@ import { defineMiddleware } from 'astro:middleware';
 import llmsContent from '../public/llms-full.txt?raw';
 
 export const onRequest = defineMiddleware((context, next) => {
+  const url = new URL(context.request.url);
+  if (
+    url.protocol === 'http:' &&
+    url.hostname !== 'localhost' &&
+    !url.hostname.startsWith('127.')
+  ) {
+    url.protocol = 'https:';
+    return Response.redirect(url.toString(), 301);
+  }
+
   const accept = context.request.headers.get('Accept') ?? '';
   if (accept.includes('text/markdown')) {
     return new Response(llmsContent, {
