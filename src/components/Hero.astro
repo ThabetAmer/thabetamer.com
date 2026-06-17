@@ -5,6 +5,7 @@ import { Image } from 'astro:assets';
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageToggle from './LanguageToggle.astro';
 import Counter from './Counter.astro';
+import profileImg from '../assets/images/profile.png';
 
 interface Props {
   lang: Lang;
@@ -35,12 +36,14 @@ const { lang } = Astro.props;
     <!-- Profile Image -->
     <div class="relative w-40 md:w-56 lg:w-64 xl:w-80 shrink-0">
       <Image
-        src="/images/profile.png"
+        src={profileImg}
         alt={t(lang, 'hero.name')}
         class="w-full h-auto object-cover mask-blend dark:invert dark:brightness-50"
         width={320}
         height={320}
         loading="eager"
+        fetchpriority="high"
+        format="webp"
       />
     </div>
   </div>
