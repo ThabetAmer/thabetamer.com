@@ -284,6 +284,7 @@ html.theme-transition *::after {
   filter: grayscale(100%);
   opacity: 0.8;
   transition: filter 0.7s ease, opacity 0.7s ease, transform 0.7s ease;
+  will-change: filter;
 }
 
 .group:hover .img-grayscale {
