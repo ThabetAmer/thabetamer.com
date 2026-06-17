@@ -17,6 +17,7 @@ const phone = '+1 (302) 469-4950';
 const linkedinUrl = 'https://linkedin.com/in/thabetamer';
 const githubUrl = 'https://github.com/thabetamer';
 const whatsappNumber = '13024694950';
+const xUrl = 'https://x.com/thabetamer';
 
 const links = [
   {
@@ -36,6 +37,12 @@ const links = [
     label: t(lang, 'contact.github'),
     href: githubUrl,
     ariaLabel: 'GitHub profile'
+  },
+  {
+    icon: 'x' as const,
+    label: t(lang, 'contact.x'),
+    href: xUrl,
+    ariaLabel: 'X (Twitter) profile'
   }
 ];
 ---
@@ -45,7 +52,7 @@ const links = [
     {t(lang, 'contact.title')}
   </h2>
 
-  <div class="flex flex-col sm:flex-row flex-wrap items-center sm:items-start gap-x-6 md:gap-x-10 gap-y-3 md:gap-y-5">
+  <div class="flex flex-col sm:flex-row flex-wrap items-center sm:items-start gap-x-4 md:gap-x-6 gap-y-2 md:gap-y-3">
     <!-- Email link: obfuscated via JS to prevent scraping -->
     <a
       data-contact-email
@@ -56,7 +63,7 @@ const links = [
       aria-label="Send email"
     >
       <Icon name="mail" class="w-5 h-5 text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-200 flex-shrink-0" />
-      <span data-contact-email-label class="text-xs sm:text-sm"></span>
+      <span data-contact-email-label class="text-xs"></span>
     </a>
     {links.map((link) => (
       <a
@@ -67,7 +74,7 @@ const links = [
         aria-label={link.ariaLabel}
       >
         <Icon name={link.icon} class="w-5 h-5 text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-200 flex-shrink-0" />
-        <span class="text-xs sm:text-sm" dir={link.icon === 'phone' ? 'ltr' : undefined}>{link.label}</span>
+        <span class="text-xs" dir={link.icon === 'phone' ? 'ltr' : undefined}>{link.label}</span>
       </a>
     ))}
   </div>
