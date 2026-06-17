@@ -24,25 +24,25 @@ const links = [
     icon: 'phone' as const,
     label: phone,
     href: `https://wa.me/${whatsappNumber}`,
-    ariaLabel: 'WhatsApp'
+    ariaLabel: 'Chat on WhatsApp'
   },
   {
     icon: 'linkedin' as const,
     label: t(lang, 'contact.linkedin'),
     href: linkedinUrl,
-    ariaLabel: 'LinkedIn profile'
+    ariaLabel: 'Thabet Amer on LinkedIn'
   },
   {
     icon: 'github' as const,
     label: t(lang, 'contact.github'),
     href: githubUrl,
-    ariaLabel: 'GitHub profile'
+    ariaLabel: 'Thabet Amer on GitHub'
   },
   {
     icon: 'x' as const,
     label: t(lang, 'contact.x'),
     href: xUrl,
-    ariaLabel: 'X (Twitter) profile'
+    ariaLabel: 'Thabet Amer on X (Twitter)'
   }
 ];
 ---
@@ -60,7 +60,7 @@ const links = [
       data-u={emailUser}
       data-d={emailDomain}
       class="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-200"
-      aria-label="Send email"
+      aria-label="Email Thabet Amer"
     >
       <Icon name="mail" class="w-5 h-5 text-muted-foreground/60 group-hover:text-muted-foreground transition-colors duration-200 flex-shrink-0" />
       <span data-contact-email-label class="text-xs"></span>
