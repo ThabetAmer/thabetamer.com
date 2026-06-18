@@ -6,9 +6,10 @@ import QRCode from './QRCode.astro';
 
 interface Props {
   lang: Lang;
+  id?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, id = 'contact' } = Astro.props;
 
 // Actual contact values
 const emailUser = 'hello';
@@ -47,7 +48,7 @@ const links = [
 ];
 ---
 
-<footer id="contact" class="pb-20 md:pb-32 pt-12 md:pt-16 border-t border-border">
+<footer id={id} class="pb-20 md:pb-32 pt-12 md:pt-16 border-t border-border">
   <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase mb-6 md:mb-8 text-center md:text-start">
     {t(lang, 'contact.title')}
   </h2>
