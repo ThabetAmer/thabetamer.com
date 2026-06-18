@@ -1,0 +1,72 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import { services, CALENDAR_URL } from '../data/services';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="services" class="mb-20 animate-on-scroll">
+  <h2 class="text-sm font-medium tracking-widest text-section-heading uppercase mb-6">
+    {t(lang, 'services.title')}
+  </h2>
+
+  <div class="space-y-3">
+    {services.map((service, index) => (
+      <details
+        name="services"
+        open={index === 0}
+        class="group rounded-xl border border-border bg-secondary/30 overflow-hidden animate-on-scroll"
+        style={`--delay: ${index * 60}ms`}
+      >
+        <summary class="flex items-center gap-3 p-5 cursor-pointer select-none list-none marker:hidden [&::-webkit-details-marker]:hidden hover:bg-secondary/50 transition-colors duration-200">
+          <Icon name={service.icon as any} class="w-5 h-5 text-muted-foreground shrink-0" />
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base font-medium text-foreground">
+              {service.title[lang]}
+            </h3>
+            <p class="text-xs text-muted-foreground/80 mt-0.5">
+              {service.subtitle[lang]}
+            </p>
+          </div>
+          <Icon name="chevron-down" class="service-chevron w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-200" />
+        </summary>
+
+        <div class="px-5 pb-5">
+          <p class="text-sm text-muted-foreground leading-relaxed mb-4">
+            {service.detail[lang]}
+          </p>
+
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-5">
+            {service.subservices[lang].map((sub) => (
+              <li class="flex items-start gap-2.5 text-sm text-muted-foreground">
+                <span class="mt-[7px] w-1 h-1 rounded-full bg-muted-foreground/50 shrink-0" />
+                <span>{sub}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="flex items-center justify-between gap-3 pt-1">
+            <span class="inline-flex items-center rounded-full border border-border px-2.5 py-1 text-[11px] font-medium tracking-wide text-muted-foreground">
+              {service.engagement[lang]}
+            </span>
+            <a
+              href={CALENDAR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group/cta inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors duration-200"
+            >
+              {service.ctaLabel[lang]}
+              <Icon name="arrow-up-right" class="w-4 h-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+            </a>
+          </div>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

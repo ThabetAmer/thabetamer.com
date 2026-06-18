@@ -4,7 +4,7 @@
     "description": "Technical leader with 15+ years in cloud architecture, DevOps, and product management for startups and enterprises worldwide."
   },
   "nav": {
-    "whatIDo": "What I Do",
+    "services": "Services",
     "portfolio": "Selected Work",
     "credentials": "Credentials",
     "writing": "Writing",
@@ -29,22 +29,8 @@
       }
     }
   },
-  "whatIDo": {
-    "title": "What I Do",
-    "items": [
-      {
-        "title": "Product Leadership",
-        "description": "Driving product strategy from discovery to delivery, aligning cross-functional teams around user outcomes and business value."
-      },
-      {
-        "title": "Cloud & DevOps",
-        "description": "Architecting resilient cloud infrastructure and implementing CI/CD pipelines that enable teams to ship with confidence."
-      },
-      {
-        "title": "AI-Driven Systems",
-        "description": "Designing intelligent systems that leverage machine learning to automate workflows and surface actionable insights."
-      }
-    ]
+  "services": {
+    "title": "Services"
   },
   "portfolio": {
     "title": "Selected Work",

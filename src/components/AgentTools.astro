@@ -38,7 +38,9 @@ const educationData = education.map(e => ({
 
 const serviceData = services.map(s => ({
   title: s.title.en,
-  description: s.description.en
+  detail: s.detail.en,
+  offerings: s.subservices.en,
+  engagement: s.engagement.en
 }));
 
 const profile = {

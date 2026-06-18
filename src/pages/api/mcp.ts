@@ -35,7 +35,7 @@ function err(id: string | number | null, code: number, message: string): Respons
 }
 
 // ---------------------------------------------------------------------------
-// Data projections — shape matches AgentTools.astro where tools overlap
+// Data projections: shape matches AgentTools.astro where tools overlap
 // ---------------------------------------------------------------------------
 
 function profileData() {
@@ -45,7 +45,7 @@ function profileData() {
     bio: 'Building scalable systems and leading product teams across 15+ countries. I bridge the gap between technical excellence and business outcomes, specializing in cloud-native solutions and AI-driven platforms.',
     yearsOfExperience: '15+',
     marketsServed: '20+',
-    services: services.map(s => ({ title: s.title.en, description: s.description.en })),
+    services: services.map(s => ({ title: s.title.en, detail: s.detail.en, offerings: s.subservices.en, engagement: s.engagement.en })),
   };
 }
 
@@ -229,7 +229,7 @@ function handleInitialize(id: string | number | null): Response {
       name: 'thabetamer-portfolio',
       title: 'Thabet Amer Portfolio',
       version: '1.0.0',
-      description: 'Portfolio MCP server for Thabet Amer — Technical Leader & Solutions Architect.',
+      description: 'Portfolio MCP server for Thabet Amer, Technical Leader & Solutions Architect.',
       websiteUrl: 'https://thabetamer.com',
     },
   });
@@ -279,7 +279,7 @@ export const POST: APIRoute = async ({ request }) => {
     return err(null, -32600, 'Invalid Request: jsonrpc must be "2.0".');
   }
 
-  // Notifications have no "id" field — must not return a JSON-RPC response
+  // Notifications have no "id" field; must not return a JSON-RPC response
   if (!('id' in rpc)) {
     return new Response(null, { status: 202, headers: CORS });
   }
